@@ -17,6 +17,18 @@ STE's goal: make technical texts clear, simple, and unambiguous for readers worl
 4. **American English** spelling (Merriam-Webster)
 5. **Short, simple sentences** — maximum 20-25 words per sentence for procedural, up to 25-27 for descriptive
 
+## The Controlled Dictionary (Part 2)
+
+The full STE dictionary is in `references/dictionary.md` — **543 approved words** (UPPERCASE) and **1,323 unapproved words** (lowercase) with their meanings and alternatives.
+
+| Type | Format | Example |
+|------|--------|---------|
+| **Approved word** | `* **WORD (pos)** → Approved meaning` | `* **ADJUSTMENT (n)** → The effect of adjusting` |
+| **Unapproved word** | `* word → ALTERNATIVE (pos)` | `* maintain → KEEP (v); HOLD (v); MAINTENANCE (n)` |
+| **Verb with forms** | Entry shows `VERB (v), VERBS, VERBED, VERBED` | `ADAPT (v), ADAPTS, ADAPTED, ADAPTED` |
+
+**How to use:** Look up every word in the dictionary file. If not found, it must be a technical name or technical verb. Each approved word is restricted to its listed part of speech and meaning.
+
 ## Part 1 — Writing Rules (9 Sections, 53 Rules)
 
 ### Section 1: Words (Rules 1.1–1.14)
@@ -27,14 +39,14 @@ STE's goal: make technical texts clear, simple, and unambiguous for readers worl
 | **1.2** | Use approved words only as their specified part of speech |
 | **1.3** | Use approved words only with their approved meanings |
 | **1.4** | Use only the approved forms of verbs and adjectives (given in dictionary) |
-| **1.5** | Words are technical names if they fit one of 20 categories (see reference) |
+| **1.5** | Words are technical names if they fit one of 20 categories (see below) |
 | **1.6** | Unapproved dictionary words are permitted only as technical names |
 | **1.7** | Do not use technical names as verbs |
 | **1.8** | Technical names must agree with approved nomenclature |
 | **1.9** | Choose short, easy-to-understand technical names |
 | **1.10** | Do not use slang or jargon as technical names |
 | **1.11** | Do not use different technical names for the same item |
-| **1.12** | Technical verbs are verbs within company-standard categories |
+| **1.12** | Technical verbs are verbs within standard categories (manufacturing, computer, descriptions, operational). See full list below |
 | **1.13** | Do not use technical verbs as nouns |
 | **1.14** | Use American English spelling |
 
@@ -51,7 +63,7 @@ STE's goal: make technical texts clear, simple, and unambiguous for readers worl
 | Rule | Summary |
 |------|---------|
 | **3.1** | Use only verb tenses from the approved list: imperative, simple present, simple past, past participle (as adjective), simple future |
-| **3.2** | Do not use: present perfect, past perfect, present/past progressive, or other complex forms. Use only: infinitive, imperative, simple present, simple past, past participle (as adj), simple future |
+| **3.2** | Do not use: present perfect, past perfect, present/past progressive, or other complex forms |
 | **3.3** | Use past participle as an adjective (before noun or after "to be"/"to become") — this is NOT passive voice |
 | **3.4** | Do not use helping verbs to make complex verb structures (e.g., "has adjusted", "is adjusted", "will be adjusted") |
 | **3.5** | Use "-ing" form only as a technical name or modifier in a technical name. Only 7 approved "-ing" words exist: lighting, opening, routing, servicing (nouns); mating, missing, remaining (adjectives); something (pronoun); during (preposition) |
@@ -65,7 +77,7 @@ STE's goal: make technical texts clear, simple, and unambiguous for readers worl
 | **4.1** | Write one topic per sentence. Maximum 20-25 words (procedural) / 25-27 words (descriptive) |
 | **4.2** | Do not omit words to make short sentences — never sacrifice clarity for brevity |
 | **4.3** | Use vertical lists for complex information. Separate items with colons, dashes, or bullet points |
-| **4.4** | Use connecting words (and, or, but, because, when, if, after, before, until, while) to join related thoughts. Do not use subordinate clauses |
+| **4.4** | Use connecting words and phrases (and, but, then, thus, as a result, at the same time) to connect sentences that contain related topics |
 
 ### Section 5: Procedural Writing (Rules 5.1–5.5)
 
@@ -117,32 +129,13 @@ STE's goal: make technical texts clear, simple, and unambiguous for readers worl
 | **9.3** | Write positive statements when possible. Negative statements can be harder to understand |
 | **9.4** | Use a consistent style throughout the document (same tense, same voice, same format) |
 | **GR-1** | Do not start a sentence with "this" unless it is followed by a noun ("This switch...") — a "dangling this" is ambiguous |
-| **GR-2** | Do not use "with" to attach descriptive phrases. Use separate sentences |
+| **GR-2** | WITH (prep) has three approved meanings: association, help/sharing, or means/instrument. Avoid ambiguous constructions — re-read to ensure the sentence cannot be misunderstood |
 | **GR-3** | Limit pronoun use. Repeat the noun when there is risk of ambiguity |
 | **GR-4** | Use "this" and "these" as adjectives + nouns, not as standalone pronouns |
 | **GR-5** | Avoid false friends (words that look similar to a word in another language but have different meanings) |
 | **GR-6** | Do not use Latin abbreviations (e.g., i.e., e.g., etc.). Use "that is," "for example," "and so on" |
 
-## Part 2 — Dictionary
-
-The STE dictionary provides:
-- **Approved words** (uppercase in dictionary): use as specified with approved meaning + part of speech
-- **Unapproved words** (lowercase in dictionary): NOT to be used. Each has an approved alternative
-- Each approved verb shows its forms (infinitive/imperative, simple present, simple past, past participle)
-- Each approved adjective shows comparative/superlative where applicable
-- Each entry shows approved meaning and examples
-
-### How to use the dictionary
-
-1. Always check if a word is in the STE dictionary before using it
-2. Use the word ONLY in its specified part of speech (e.g., "test" is an approved noun but NOT an approved verb — use the verb "do a test" instead of "test the system")
-3. Use the word ONLY with its approved meaning (e.g., "follow" means "come after/go after" NOT "obey")
-4. If a word is not in the dictionary, it is either:
-   - A technical name (if it fits a category from Rule 1.5)
-   - A technical verb (if it fits a category from Rule 1.12)
-   - Find its best synonym from the approved dictionary list
-
-### Technical Name Categories (Rule 1.5)
+## Technical Name Categories (Rule 1.5)
 
 | # | Category |
 |---|----------|
@@ -167,6 +160,41 @@ The STE dictionary provides:
 | 19 | Parts of a whole when each part is standard terminology in the industry |
 | 20 | Military terms (NATO designations, military time, threat levels, mission types, etc.) |
 
+## Technical Verb Categories (Rule 1.12)
+
+Technical verbs are outside the dictionary but permitted in specific contexts. They must obey all other STE rules.
+
+### 1. Manufacturing Processes
+| Subcategory | Example Verbs |
+|-------------|---------------|
+| Remove material | drill, grind, mill, ream |
+| Add material | flame, insulate, remetal, retread |
+| Attach material | braze, crimp, rivet, solder, weld |
+| Change strength/structure | anneal, cure, decay, freeze, heat-treat, magnetize, normalize, vaporize |
+| Change surface finish | buff, burnish, dress, passivate, plate, polish |
+| Change shape | blend, cast, extrude, spin, stamp |
+
+### 2. Computer Processes and Applications
+| Subcategory | Example Verbs |
+|-------------|---------------|
+| Input/output | click, digitize, enter, press, print, swipe, tap, type |
+| UI/application | clear, close, copy, cut, delete, deselect, disable, drag, drag and drop, enable, encrypt, erase, filter, highlight, maximize, minimize, navigate, open, paste, save, scroll, sort, store, zoom in, zoom out |
+| System operations | abort, boot, communicate, debug, download, format, install, load, manage, process, reboot, update, upgrade, upload |
+
+### 3. Descriptions (descriptive texts only, NOT procedures)
+| Subcategory | Example Verbs |
+|-------------|---------------|
+| Math/science/engineering | bisect, compensate for, convert, detect, emit, modulate, radiate, transform |
+| Military processes | aim, arm, detect, disable, enable, explode, fire, intercept, load, lock on, parachute, unload |
+| Regulatory language | waive, comply with, conform to, supersede, meet (a requirement) |
+
+### 4. Operational Language
+| Context | Example Verbs |
+|---------|---------------|
+| Operations (aircrew, medical, device manuals, etc.) | airdrop, alert, approach, authorize, brief, call, contact, crank, descend, deviate, disembark, drift, dry-motor, enable, evacuate, fasten, ferry, fly, hover, inform, inhibit, land, load, maintain, navigate, observe, provide, reach, respond, retard, retrim, return, rotate, serve, sanitize, shut down, sideslip, sit, sleep, sterilize, switch off, switch on, take off, take over, taxi, tie, trigger, trim, unfasten, unlatch, unload, verify, wet-motor |
+
+**Reminder:** If an approved verb in the dictionary accurately gives the instruction, use it instead of a technical verb.
+
 ## Typical Rewrites
 
 | Non-STE | STE |
@@ -177,8 +205,8 @@ The STE dictionary provides:
 | "Approximately 5 liters of fluid is required." | "You will need approximately 5 liters of fluid." |
 | "If any discrepancies are noted..." | "If you find discrepancies..." |
 | "Test the system for leaks." | "Do a leak test of the system." |
-| "It is recommended to replace the filter." | "Anomie recommends that you replace the filter." |
-| "The engine utilizes fuel injection." | "The engine uses fuel injection." |
+| "The manufacturer recommends that you replace the filter." | "The manufacturer recommends that you replace the filter." |
+| "The engine uses fuel for injection." | "The engine uses fuel for injection." |
 | "The inspection should be performed daily." | "Do the inspection daily." |
 | "Failure to comply will result in..." | "If you do not obey these instructions, injury can occur." |
 
@@ -186,8 +214,8 @@ The STE dictionary provides:
 
 When asked to write or validate STE:
 
-1. **Check every word** against the STE dictionary. Any word not in the dictionary must be a justified technical name/verb or replaced with an approved synonym
-2. **Verify part of speech** — an approved noun cannot be used as a verb and vice versa
+1. **Check every word** against the STE dictionary in `references/dictionary.md`. If the word is approved, use it only with its listed meaning and part of speech. If unapproved, use the listed alternative. If not in the dictionary at all, it must be a justified technical name or technical verb
+2. **Verify part of speech** — an approved noun cannot be used as a verb and vice versa. The dictionary lists the part of speech for each word
 3. **Keep sentences short** — count words rigorously. Split long sentences
 4. **Use active voice** exclusively in procedures, predominantly in descriptions
 5. **Use imperative mood** for instructions. Start each step with a command verb
@@ -199,4 +227,7 @@ When asked to write or validate STE:
 
 ## Reference Files
 
-For the full specification content, read the reference files in the `references/` subdirectory.
+| File | Contents |
+|------|----------|
+| `references/dictionary.md` | **Full controlled dictionary** — 543 approved words (with parts of speech and meanings) and 1,323 unapproved words (with approved alternatives). Check this for every word |
+| `references/verb-tenses.md` | Approved verb tenses, active vs passive, -ing rules, sentence length limits, safety formatting |
