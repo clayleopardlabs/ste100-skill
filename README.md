@@ -9,16 +9,16 @@ Based on **Issue 8 (April 2021)** of the ASD-STE100 specification, originally de
 This skill teaches AI assistants to:
 - **Validate** technical text against all 53 STE writing rules
 - **Rewrite** Non-STE text into compliant Simplified Technical English
-- **Check** word choice against the STE controlled dictionary
+- **Check** word choice against the full STE controlled dictionary (543 approved + 1,323 unapproved words)
 - **Correct** sentence structure, verb tenses, noun clusters, and safety formatting
 
 ## Skill Contents
 
 ```
 ste100/
-├── SKILL.md                       # Main skill - all 9 sections x 53 rules
+├── SKILL.md                       # Main skill - all 9 sections x 53 rules, tech verb categories
 └── references/
-    ├── dictionary.md              # Dictionary structure, parts of speech, common replacements
+    ├── dictionary.md              # Full controlled dictionary (543 approved, 1323 unapproved words)
     └── verb-tenses.md             # Approved/unapproved tenses, active vs passive, -ing rules
 ```
 
@@ -35,7 +35,16 @@ ste100/
 | 7 | 7.1-7.3 | Safety instructions - WARNING vs CAUTION formatting |
 | 8 | 8.1-8.7 | Punctuation & word counts - lists, abbreviations, hyphens |
 | 9 | 9.1-9.4 + GR | Writing practices - terminology consistency, positive statements |
-| Dictionary | - | Controlled dictionary reference, common word replacements |
+| Tech Verbs | 1.12 | 4 categories: manufacturing, computer, descriptions, operational |
+
+### Dictionary (86 KB, 1,866 entries)
+
+| Type | Count |
+|------|-------|
+| **Approved words** | 543 (with parts of speech and approved meanings) |
+| **Unapproved words** | 1,323 (with approved alternatives) |
+
+Each approved word is restricted to its specific part of speech and meaning. Example entries show approved and unapproved usage.
 
 ## Installation
 
@@ -70,20 +79,10 @@ Add to `opencode.json`:
 ```
 "Rewrite this maintenance procedure in STE: [text]"
 "Check this paragraph for STE compliance: [text]"
+"Is 'utilize' an approved STE word?"
 "Convert this instruction to Simplified Technical English: [text]"
-"What's wrong with this sentence in STE: [text]"
-"Explain why 'utilize' is not approved in STE"
+"What's wrong with this sentence: [text]"
 ```
-
-## Example Rewrites
-
-| Non-STE | STE |
-|---------|-----|
-| "Follow the safety instructions below." | "Obey the safety instructions below." |
-| "Ensure the valve is operable." | "Make sure that the valve can operate." |
-| "The temperature must be adjusted." | "Adjust the temperature." |
-| "Test the system for leaks." | "Do a leak test of the system." |
-| "The engine utilizes fuel injection." | "The engine uses fuel injection." |
 
 ## About ASD-STE100
 
