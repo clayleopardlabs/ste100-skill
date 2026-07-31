@@ -19,7 +19,7 @@ STE's goal: make technical texts clear, simple, and unambiguous for readers worl
 
 ## The Controlled Dictionary (Part 2)
 
-The full STE dictionary is in `references/dictionary.md` — **543 approved words** (UPPERCASE) and **1,323 unapproved words** (lowercase) with their meanings and alternatives.
+The full STE dictionary is in `references/dictionary.md` — **804 approved words** (UPPERCASE) and **1,323 unapproved words** (lowercase) with their meanings and alternatives.
 
 | Type | Format | Example |
 |------|--------|---------|
@@ -229,5 +229,5 @@ When asked to write or validate STE:
 
 | File | Contents |
 |------|----------|
-| `references/dictionary.md` | **Full controlled dictionary** — 543 approved words (with parts of speech and meanings) and 1,323 unapproved words (with approved alternatives). Check this for every word |
+| `references/dictionary.md` | **Full controlled dictionary** — 804 approved words (with parts of speech and meanings) and 1,323 unapproved words (with approved alternatives). Check this for every word |
 | `references/verb-tenses.md` | Approved verb tenses, active vs passive, -ing rules, sentence length limits, safety formatting |

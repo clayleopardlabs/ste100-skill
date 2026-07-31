@@ -1,0 +1,126 @@
+ABSORB (v) - To take in or soak up
+ACCEPT (v) - To take something that is offered or given
+ADD (v) - To put something with something else
+ADJUST (v) - To change something so that it is correct or fits
+AGREE (v) - To have the same opinion
+ALIGN (v) - To put things in a straight line or correct position
+APPLY (v) - To put something on a surface; to use something
+ASSEMBLE (v) - To put parts together to make a complete object
+ATTACH (v) - To fasten or join one thing to another
+BE (v) - To exist; to form the passive voice with the past participle
+BECOME (v) - To begin to be
+BLEED (v) - To let fluid or air out of a system
+BREAK (v) - To separate into pieces
+BREATHE (v) - To take air into and out of the lungs
+CALCULATE (v) - To find a number by mathematics
+CAN (v) - To be able to; to be permitted to
+CANCEL (v) - To stop something that was planned or active
+CATCH (v) - To stop and hold something that is moving
+CHARGE (v) - To put electrical energy into a battery
+CLOSE (v) - To move something so that it covers an opening
+COLLECT (v) - To gather things together
+COMPARE (v) - To examine things to see how they are alike or different
+COMPLETE (v) - To finish something
+CONNECT (v) - To join two or more things together
+CONTAIN (v) - To hold or include something inside
+CONTINUE (v) - To keep doing something without stopping
+CUT (v) - To divide or shorten something with a sharp tool
+DECREASE (v) - To make or become smaller or less
+DEFLATE (v) - To let air out of something
+DEFUEL (v) - To remove fuel from a vehicle or tank
+DISARM (v) - To remove the explosive device from a weapon
+DISASSEMBLE (v) - To take a machine apart into its parts
+DISCARD (v) - To throw something away
+DISCONNECT (v) - To separate things that were joined
+DIVIDE (v) - To separate into parts or groups
+DO (v) - To perform an action
+DRY (v) - To remove water or moisture from something
+EJECT (v) - To push something out
+ENGAGE (v) - To connect or make something operate
+ERASE (v) - To remove marks or data completely
+EXAMINE (v) - To look at something carefully
+FALL (v) - To move down toward the ground
+FILL (v) - To put something into a container until it is full
+FIND (v) - To discover or locate something
+FOLD (v) - To bend something so that one part lies on another
+GET (v) - To receive or obtain something
+GIVE (v) - To hand something to someone
+GO (v) - To move from one place to another
+GO AWAY (v) - To leave
+GO INTO (v) - To enter
+HANG (v) - To attach something so it is supported from above
+HAVE (v) - To own or possess
+HEAR (v) - To receive sound with the ears
+HELP (v) - To make it easier for someone to do something
+HIT (v) - To strike something
+HOLD (v) - To keep something in the hand or in position
+IDENTIFY (v) - To recognize or name something
+IGNORE (v) - To pay no attention to something
+INCLUDE (v) - To contain as part of a whole
+INCREASE (v) - To make or become larger or more
+INFLATE (v) - To fill something with air or gas
+INSTALL (v) - To put equipment in position and make it ready to use
+INTERCHANGE (v) - To put each of two things in the place of the other
+ISOLATE (v) - To separate something from everything else
+KEEP (v) - To continue to have or hold something
+KILL (v) - To make a living thing die
+KNOW (v) - To have information in the mind
+LET (v) - To allow something to happen
+LIFT (v) - To move something up
+LISTEN (v) - To pay attention to sound
+LOCK (v) - To fasten something with a lock
+LOOK (v) - To use the eyes to see something
+LOOSEN (v) - To make something less tight
+LUBRICATE (v) - To apply a lubricant to reduce friction
+MAKE (v) - To produce or create something
+MAKE SURE (v) - To check that something is correct or will happen
+MEASURE (v) - To find the size or quantity of something
+MIX (v) - To put two or more things together
+MONITOR (v) - To watch or check something continuously
+MOOR (v) - To tie a vessel to a fixed point
+MOVE (v) - To change position
+MOVE OFF (v) - To start to move away
+OBEY (v) - To do what someone tells you to do
+OCCUR (v) - To happen
+OPERATE (v) - To make a machine or system work
+PAINT (v) - To cover a surface with paint
+PREPARE (v) - To make something ready
+PRESSURIZE (v) - To increase the pressure inside something
+PREVENT (v) - To stop something from happening
+PULL (v) - To move something toward yourself
+PUSH (v) - To move something away from yourself
+PUT (v) - To place something somewhere
+READ (v) - To look at words and understand them
+RECOMMEND (v) - To tell someone that something is good or correct
+RECORD (v) - To store information or sound for later use
+REFER (v) - To mention or direct attention to something
+REFUEL (v) - To fill a vehicle with fuel
+REJECT (v) - To refuse to accept something
+RELEASE (v) - To let something go
+REMOVE (v) - To take something away
+REPLACE (v) - To put a new thing in the place of an old one
+RETRACT (v) - To pull something back in
+RUB (v) - To press and move something over a surface
+SEE (v) - To use the eyes to notice something
+SELECT (v) - To choose one thing from several
+SEND (v) - To make something go to another place
+SHAKE (v) - To move something quickly from side to side or up and down
+SHOW (v) - To make something visible or known
+SOAK (v) - To make something very wet
+SPEAK (v) - To say words
+STAY (v) - To remain in a place
+STOP (v) - To end movement or activity
+SWALLOW (v) - To make food or drink go down the throat
+TELL (v) - To give information to someone
+THINK (v) - To use the mind to form ideas
+TILT (v) - To move something so one end is higher than the other
+TORQUE (v) - To tighten something to a specified turning force
+TOUCH (v) - To put a part of the body on something
+TOW (v) - To pull a vehicle or vessel with a rope or cable
+TRANSMIT (v) - To send signals or energy from one place to another
+TRY (v) - To attempt to do something
+TWIST (v) - To turn something with a turning movement
+UNWIND (v) - To straighten something that was wound
+USE (v) - To do a task with something
+WIND (v) - To wrap something around a spool or axis
+WRITE (v) - To make letters or words on a surface

@@ -11,7 +11,7 @@ Inspired by the video [The cure for AI slop is a 1986 aircraft manual](https://w
 This skill teaches AI assistants to:
 - **Validate** technical text against all 53 STE writing rules
 - **Rewrite** Non-STE text into compliant Simplified Technical English
-- **Check** word choice against the full STE controlled dictionary (543 approved + 1,323 unapproved words)
+- **Check** word choice against the full STE controlled dictionary (804 approved + 1,323 unapproved words)
 - **Correct** sentence structure, verb tenses, noun clusters, and safety formatting
 
 ## Complete vs. Distilled
@@ -21,7 +21,7 @@ This is the **complete** implementation of the STE specification. The [distilled
 | | Distilled (woosal1337) | This skill |
 |---|---|---|
 | Rules | Mechanical subset | All 53 rules, 9 sections |
-| Dictionary | None, links to the official standard | Full controlled dictionary (86 KB, 543 approved + 1,323 unapproved words) |
+| Dictionary | None, links to the official standard | Full controlled dictionary (86 KB, 804 approved + 1,323 unapproved words) |
 | Strongest at | Quick rewriting | Validation, word lookup, rewriting |
 | Install weight | Single small file | SKILL.md + 2 reference files |
 
@@ -50,7 +50,7 @@ Head-to-head test against the distilled STE skill from [woosal1337's "The cure f
 ste100/
 ├── SKILL.md                       # Main skill - all 9 sections x 53 rules, tech verb categories
 └── references/
-    ├── dictionary.md              # Full controlled dictionary (543 approved, 1323 unapproved words)
+    ├── dictionary.md              # Full controlled dictionary (804 approved, 1323 unapproved words)
     └── verb-tenses.md             # Approved/unapproved tenses, active vs passive, -ing rules
 ```
 
@@ -88,11 +88,11 @@ If either reference file is missing or moved, the assistant cannot perform compl
 | 9 | 9.1-9.4 + GR | Writing practices - terminology consistency, positive statements |
 | Tech Verbs | 1.12 | 4 categories: manufacturing, computer, descriptions, operational |
 
-### Dictionary (86 KB, 1,866 entries)
+### Dictionary (86 KB, 2,127 entries)
 
 | Type | Count |
 |------|-------|
-| **Approved words** | 543 (with parts of speech and approved meanings) |
+| **Approved words** | 804 (with parts of speech and approved meanings) |
 | **Unapproved words** | 1,323 (with approved alternatives) |
 
 Each approved word is restricted to its specific part of speech and meaning. Example entries show approved and unapproved usage.
@@ -146,6 +146,44 @@ Add to `opencode.json`:
 "Convert this instruction to Simplified Technical English: [text]"
 "What's wrong with this sentence: [text]"
 ```
+
+## Examples
+
+### Example 1: An Error Message, in Strict STE
+
+Before (typical AI slop):
+
+> We sincerely apologize, but our system is currently experiencing an unusually high volume of traffic, and as a result, we are unable to process your request at this time. Please attempt your request again momentarily. We appreciate your patience and understanding during this inconvenience.
+
+After (strict STE):
+
+> The system received more data than it can accept. The system cannot accept more data at this time. Try again after a short time.
+
+What changed:
+
+- "unable" -> CANNOT, "attempt" -> TRY, "process" -> the sentence was rebuilt
+- "currently", "momentarily", "apologize", "inconvenience", "as a result" are not approved words; they were removed
+- Passive voice became active voice
+- Sentences of 10, 9, and 6 words; the limit is 20 for instructions
+- No apology, no filler, no vague time references
+
+### Example 2: A README Intro, in STE Flavored Mode
+
+Before (typical AI slop):
+
+> Welcome to LogWatch, the all-in-one solution for modern log management! Our cutting-edge platform seamlessly ingests, analyzes, and correlates vast amounts of log data from any source, empowering your team to leverage cutting-edge analytics and unlock actionable insights. Experience unprecedented observability and revolutionize your troubleshooting workflows with minimal setup effort.
+
+After (flavored STE):
+
+> LogWatch collects data from all your systems. LogWatch shows the data in one area. You can use LogWatch to find problems quickly. You can install LogWatch in a short time.
+
+What changed:
+
+- "seamlessly", "cutting-edge", "unprecedented", "actionable", "revolutionize" are not approved words; they were removed
+- The sentence "Our platform empowers your team" became "You can use LogWatch"
+- "any source", "workflows", "setup effort" carried no facts; they were removed
+- Sentences of 6, 9, 8, and 9 words; the limit is 25 for descriptive text
+- Claims became statements of fact; "all-in-one solution" is a claim, not a fact
 
 ## About ASD-STE100
 

@@ -2,13 +2,220 @@
 
 UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 
-## Approved Words (543)
+## Approved Words (804)
 
 * **ABRASIVE (adj)** — That can remove material by friction
+* **ABSORB (v)** - To take in or soak up
+* **ACCEPT (v)** - To take something that is offered or given
+* **ACCIDENTAL (adj)** - That happens without intention
+* **ACCIDENTALLY (adv)** - Without intention
+* **ACCURATELY (adv)** - In a correct and exact way
+* **ADD (v)** - To put something with something else
+* **ADJUST (v)** - To change something so that it is correct or fits
+* **AGREE (v)** - To have the same opinion
 * **AID (n)** — Help that is given
 * **AGENT (n)** — One of a group of materials made to do a specified task
+* **AIR (TN)** - The gas that surrounds the earth
+* **ALIGN (v)** - To put things in a straight line or correct position
+* **ANALYSIS (TN)** - The examination of something in detail
+* **APPLY (v)** - To put something on a surface; to use something
+* **APPROXIMATELY (adv)** - Nearly correct or exact
+* **ASSEMBLE (v)** - To put parts together to make a complete object
+* **ATTACH (v)** - To fasten or join one thing to another
+* **BANK (TN)** - The ground at the side of a river; a raised area
+* **BE (v)** - To exist; to form the passive voice with the past participle
+* **BECOME (v)** - To begin to be
+* **BETTER (adj)** - Of a higher quality or standard
+* **BLEED (v)** - To let fluid or air out of a system
+* **BREAK (v)** - To separate into pieces
+* **BREATHE (v)** - To take air into and out of the lungs
+* **BRIGHT (adj)** - That gives out much light
+* **BRUSH (TN)** - A tool with bristles used for cleaning or painting
+* **CALCULATE (v)** - To find a number by mathematics
+* **CAN (v)** - To be able to; to be permitted to
+* **CANCEL (v)** - To stop something that was planned or active
+* **CAP (TN)** - A cover for the end or top of an object
+* **CATCH (v)** - To stop and hold something that is moving
+* **CATEGORY (TN)** - A class or group of things with the same characteristics
+* **CAUGHT (adj)** - Held or trapped
+* **CENTER (TN)** - The middle point of an object or area
+* **CHANNEL (TN)** - A passage through which a fluid or signal flows
+* **CHARGE (v)** - To put electrical energy into a battery
+* **CHOCK (TN)** - A block used to prevent movement
+* **CLASS (TN)** - A group of things with the same characteristics
+* **CLOSE (v)** - To move something so that it covers an opening
+* **CLOSED (adj)** - Not open
+* **COLLECT (v)** - To gather things together
+* **COMPARE (v)** - To examine things to see how they are alike or different
+* **COMPLETE (v)** - To finish something
+* **CONFIGURATION (TN)** - The arrangement of the parts of a system
+* **CONNECT (v)** - To join two or more things together
+* **CONTAIN (v)** - To hold or include something inside
+* **CONTINUE (v)** - To keep doing something without stopping
+* **CONTINUOUSLY (adv)** - Without stopping
+* **CORROSION (TN)** - The damage caused to metal by chemical action
+* **COVER (TN)** - A part that protects or hides something
+* **CRACK (TN)** - A thin break in a surface
+* **CURE (TV)** - To treat a material so that it becomes hard and stable
+* **CUT (v)** - To divide or shorten something with a sharp tool
+* **DECREASE (v)** - To make or become smaller or less
+* **DEFECT (TN)** - A fault in a part or material
+* **DEFLATE (v)** - To let air out of something
+* **DEFORMATION (TN)** - A change in the shape of an object
+* **DEFUEL (v)** - To remove fuel from a vehicle or tank
+* **DENT (TN)** - A hollow caused by a blow or pressure
+* **DIFFERENTLY (adv)** - In another way
+* **DIM (adj)** - Not bright
+* **DIRTY (adj)** - Not clean
+* **DISARM (v)** - To remove the explosive device from a weapon
+* **DISASSEMBLE (v)** - To take a machine apart into its parts
+* **DISCARD (v)** - To throw something away
+* **DISCONNECT (v)** - To separate things that were joined
+* **DISINFECTANT (TN)** - A chemical that kills harmful organisms
+* **DIVIDE (v)** - To separate into parts or groups
+* **DO (v)** - To perform an action
+* **DRY (v)** - To remove water or moisture from something
+* **EASY (adj)** - Not difficult
+* **EJECT (v)** - To push something out
+* **ENGAGE (v)** - To connect or make something operate
+* **ERASE (v)** - To remove marks or data completely
+* **EXAMINE (v)** - To look at something carefully
+* **FAILURE (TN)** - The state when something does not operate correctly
+* **FALL (v)** - To move down toward the ground
+* **FAST (adj)** - That moves or operates at high speed
+* **FASTER (adj)** - That moves or operates at higher speed
+* **FILL (v)** - To put something into a container until it is full
+* **FILTER (TN)** - A device that removes unwanted matter from a fluid
+* **FIND (v)** - To discover or locate something
+* **FLAT (adj)** - With a level surface
+* **FOCUS (TN)** - The point at which light or waves meet
+* **FOLD (v)** - To bend something so that one part lies on another
+* **FORCE (TN)** - A push or pull that changes the state of movement of an object
+* **FREQUENTLY (adv)** - Often
+* **FULL (adj)** - That contains as much as possible
+* **GALLING (TN)** - Damage to a metal surface caused by friction
+* **GET (v)** - To receive or obtain something
+* **GIVE (v)** - To hand something to someone
+* **GIVEN (adj)** - Already supplied or known
+* **GO (v)** - To move from one place to another
+* **GO AWAY (v)** - To leave
+* **GO INTO (v)** - To enter
+* **GOOD (adj)** - Of a high quality
+* **GOUGE (TN)** - A deep cut or hollow in a surface
+* **GRADUATION (TN)** - A mark on a scale
+* **GRAPH (TN)** - A diagram that shows the relation between values
+* **GREASE (TN)** - A thick lubricant
+* **GUARD (TN)** - A part that prevents access or injury
+* **HALF (TN)** - One of two equal parts
+* **HANG (v)** - To attach something so it is supported from above
+* **HARD (adj)** - Not soft; difficult to cut or bend
+* **HAVE (v)** - To own or possess
+* **HAZE (TN)** - A thin mist in the air
+* **HEAR (v)** - To receive sound with the ears
+* **HELP (v)** - To make it easier for someone to do something
+* **HIT (v)** - To strike something
+* **HOLD (v)** - To keep something in the hand or in position
+* **HOT (adj)** - With a high temperature
+* **HUM (TN)** - A low continuous sound
+* **ICE (TN)** - Water that is frozen and solid
+* **IDENTIFY (v)** - To recognize or name something
+* **IDLE (TN)** - The state when an engine operates without a load
+* **IGNITION (TN)** - The system that starts the combustion in an engine
+* **IGNORE (v)** - To pay no attention to something
+* **IMMEDIATELY (adv)** - At once
+* **INCLUDE (v)** - To contain as part of a whole
+* **INCORRECTLY (adv)** - In a wrong way
+* **INCREASE (v)** - To make or become larger or more
+* **INDEPENDENTLY (adv)** - Not connected to something else
+* **INFLATE (v)** - To fill something with air or gas
+* **INSTALL (v)** - To put equipment in position and make it ready to use
+* **INTERCHANGE (v)** - To put each of two things in the place of the other
+* **INTERFERENCE (TN)** - The effect of one signal on another
+* **INTERSECTION (TN)** - The point where two lines or paths cross
+* **ISOLATE (v)** - To separate something from everything else
+* **JACK (TN)** - A device used to lift a heavy object
+* **KEEP (v)** - To continue to have or hold something
+* **KEY (TN)** - A device used to lock or unlock; a part that controls access
+* **KILL (v)** - To make a living thing die
+* **KINK (TN)** - A sharp bend in a line or tube
+* **KNOW (v)** - To have information in the mind
+* **LABEL (TN)** - A tag that identifies an object
+* **LANDING (TN)** - The act of coming down to the ground
+* **LARGE (adj)** - Of great size
+* **LET (v)** - To allow something to happen
+* **LIFT (v)** - To move something up
+* **LIGHT (adj)** - With little weight; not heavy
+* **LIST (TN)** - A series of items written one below the other
+* **LISTEN (v)** - To pay attention to sound
+* **LOAD (TN)** - The weight or force that an object carries
+* **LOCK (v)** - To fasten something with a lock
+* **LONG (adj)** - Of great length or duration
+* **LOOK (v)** - To use the eyes to see something
+* **LOOSEN (v)** - To make something less tight
+* **LUBRICATE (v)** - To apply a lubricant to reduce friction
+* **MAKE (v)** - To produce or create something
+* **MAKE SURE (v)** - To check that something is correct or will happen
+* **MATT (adj)** - Without shine
+* **MEASURE (v)** - To find the size or quantity of something
+* **METAL (TN)** - A hard material that conducts heat and electricity
+* **MIX (v)** - To put two or more things together
+* **MOMENTARILY (adv)** - For a short time
+* **MONITOR (v)** - To watch or check something continuously
+* **MOOR (v)** - To tie a vessel to a fixed point
+* **MOTORING (TN)** - The act of driving a vehicle
+* **MOVE (v)** - To change position
+* **MOVE OFF (v)** - To start to move away
+* **NEW (adj)** - Not used or known before
+* **OBEY (v)** - To do what someone tells you to do
+* **OCCUR (v)** - To happen
+* **OIL (TN)** - A liquid used for lubrication or as fuel
+* **OPERATE (v)** - To make a machine or system work
+* **ORDER (TN)** - A command; the way in which things follow one another
+* **OVERHAUL (TN)** - A complete examination and repair
+* **PAINT (v)** - To cover a surface with paint
+* **PLUG (TN)** - A device that closes an opening or connects to a supply
+* **PREPARE (v)** - To make something ready
+* **PRESERVATION (TN)** - The act of keeping something in good condition
+* **PRESSURE (TN)** - The force applied to a surface per unit of area
+* **PRESSURIZE (v)** - To increase the pressure inside something
+* **PREVENT (v)** - To stop something from happening
+* **PULL (v)** - To move something toward yourself
+* **PUMP (TN)** - A device that moves a fluid
+* **PUSH (v)** - To move something away from yourself
+* **PUT (v)** - To place something somewhere
+* **RADIUS (TN)** - The distance from the center of a circle to its edge
+* **READ (v)** - To look at words and understand them
+* **RECOIL (TN)** - The backward movement of a weapon when it fires
+* **RECOMMEND (v)** - To tell someone that something is good or correct
+* **RECORD (v)** - To store information or sound for later use
+* **REFER (v)** - To mention or direct attention to something
+* **REFUEL (v)** - To fill a vehicle with fuel
+* **REJECT (v)** - To refuse to accept something
+* **RELEASE (v)** - To let something go
+* **REMOVE (v)** - To take something away
+* **REPLACE (v)** - To put a new thing in the place of an old one
+* **RETRACT (v)** - To pull something back in
+* **ROPE (TN)** - A thick cord made of twisted fibers
+* **ROUGH (adj)** - Not smooth
+* **RUB (v)** - To press and move something over a surface
+* **SAFE (adj)** - Not dangerous
+* **SATISFACTORILY (adv)** - In an acceptable way
+* **SATISFACTORY (adj)** - Acceptable
+* **SCAN (TN)** - An examination by moving a beam or sensor across an object
+* **SCORE (TN)** - A groove or mark on a surface
+* **SCRATCH (TN)** - A thin mark on a surface caused by a sharp object
+* **SEE (v)** - To use the eyes to notice something
+* **SELECT (v)** - To choose one thing from several
+* **SEND (v)** - To make something go to another place
+* **SERVICEABLE (adj)** - In a condition that permits use
+* **SHAKE (v)** - To move something quickly from side to side or up and down
+* **SHINY (adj)** - That reflects light
+* **SHORT (adj)** - Of little length or duration
+* **SHOW (v)** - To make something visible or known
+* **SKID (TN)** - The uncontrolled sliding of a vehicle
 * **SLOW (adj)** — At low speed
 * **SLOWEST)** — -
+* **SLOWER (adj)** - That moves or operates at lower speed
 * **SLOWLY (adv)** — In a slow manner
 * **BEHIND (prep)** — In a position at the rear of
 * **ABOUT (prep)** — Concerned with For other meanings, use:; APPROXIMATELY (adv); AROUND (prep)
@@ -431,8 +638,12 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **SINCE (conj)** — Function word that shows: “from some time in the past until a later time or now” For other meanings, use:; BECAUSE (conj)
 * **SLOPE (n)** — A surface that is not level
 * **SLOT (n)** — A long opening that is not wide
+* **SMALL (adj)** - Of little size
 * **SMOKE (n)** — A gas that has particles of burned material and that you can see
+* **SMOOTH (adj)** - With no rough parts
 * **SMOOTHLY (adv)** — In a smooth manner
+* **SOAK (v)** - To make something very wet
+* **SOAP (TN)** - A substance used for cleaning
 * **SOLID (adj)** — That has the properties of a solid
 * **SOLID (n)** — Material that is not a gas or a liquid
 * **SOLUTION (n)** — 1. A liquid that includes a dissolved material; 2. The answer to a problem
@@ -441,34 +652,57 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **SOUND (n)** — Something that you can hear
 * **SOURCE (n)** — 1. Something that supplies energy or data; 2. The point where something starts
 * **SPACE (n)** — A distance, area, or volume
+* **SPAN (TN)** - The distance between two supports or points
 * **SPARK (n)** — A hot, bright particle of a material that burns
+* **SPEAK (v)** - To say words
 * **SPECIAL (adj)** — For a specified function
 * **SPECIALLY (adv)** — In a special manner
 * **SPECIFIED (adj)** — Given in, identified in, or related to a specification, regulation, or procedure
 * **SPEED (n)** — The rate of movement
 * **SPHERICAL (adj)** — That has the shape of a sphere
+* **SPLINE (TN)** - A series of ridges on a shaft
 * **SPRAY (n)** — A jet of very small drops of liquid
 * **STABLE (adj)** — That does not change or move
+* **STAIN (TN)** - A mark that is difficult to remove
+* **STAMP (TN)** - A tool that presses a mark into a surface
 * **STANDARD (adj)** — Related to equipment and procedures that are normally used
 * **START (n)** — The beginning of a movement or operation
+* **STAY (v)** - To remain in a place
 * **STEP (n)** — A specified part of a procedure
+* **STOP (v)** - To end movement or activity
+* **STORAGE (TN)** - The act of keeping items for later use
+* **STRAIGHT (adj)** - Not curved or bent
+* **STRAIN (TN)** - The deformation of a material caused by force
 * **STRIP (n)** — A piece of material that is long and thin, but not wide
 * **STRIPE (n)** — A line on a surface which is a different color
+* **STRONG (adj)** - Not easily broken or damaged
 * **STRUCTURE (n)** — 1. A construction; 2. The arrangement of something
+* **SUBSEQUENT (adj)** - That comes after
+* **SUBSEQUENTLY (adv)** - After that time
 * **SUCH (adj)** — Of the same group
+* **SUCTION (TN)** - The force caused by a low pressure area
 * **SUDDEN (adj)** — That occurs in a short time
 * **SUDDENLY (adv)** — In a sudden manner
 * **SUFFICIENT (adj)** — Not less (or more) than necessary
+* **SUFFICIENTLY (adv)** - In an amount that is enough
 * **SUM (n)** — The result when you add
 * **SUPPLY (n)** — Something that is supplied
+* **SUPPORT (TN)** - A part that holds something in position
 * **SURE (adj)** — Certain
 * **SURFACE (n)** — One or more of the faces of something
+* **SWALLOW (v)** - To make food or drink go down the throat
+* **SWITCH (TN)** - A device used to make or break an electrical circuit
 * **SYMBOL (n)** — A written sign that identifies a quantity, operation, item, or condition
 * **SYMPTOM (n)** — A sign of a condition
+* **SYNCHRONIZED (adj)** - That operate together at the same time
 * **SYSTEM (n)** — An assembly of related parts to do a specified operation
+* **TACKY (adj)** - Sticky but not fully dry
+* **TAPE (TN)** - A narrow strip of material used to hold or seal
 * **TASK (n)** — Assigned work or procedure
 * **TELESCOPIC (adj)** — Related to items that retract into each other
+* **TELL (v)** - To give information to someone
 * **TEMPORARY (adj)** — For a short time only, not permanent
+* **TENSION (TN)** - The state of being stretched tight
 * **TERTIARY (adj)** — Third in importance
 * **TEST (n)** — The procedure where an object or system is operated to make sure that its performance and/or function is correct
 * **THAN (conj)** — Function word that you use with comparative adjectives or adverbs
@@ -483,15 +717,21 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **THESE (adj)** — Refers to specified persons or things
 * **THESE (pron)** — Function word that shows the persons or things referred to
 * **THEY (pron)** — Function word that shows the persons or things referred to
+* **THICK (adj)** - With large distance between opposite surfaces
 * **THICKNESS (n)** — The smallest of the three dimensions of an object
+* **THINK (v)** - To use the mind to form ideas
 * **THIS (adj)** — Refers to a specified person or thing
 * **THIS (pron)** — Function word that shows the person or thing referred to
 * **THOSE (pron)** — Function word that shows the persons or things referred to
+* **THREAD (TN)** - The spiral groove on a screw or nut
+* **THREE (TN)** - The number 3
 * **THROUGH (adv)** — Function word that shows movement into one end or side and out of the other
 * **THROUGH (prep)** — Function word that shows movement into one end or side and out of the other
 * **THRU (prep)** — From a point in a sequence to another
 * **THUS (adv)** — For that reason; For other meanings, use:; FOLLOW (v)
+* **TIGHT (adj)** - Not loose
 * **TIGHTLY (adv)** — In a tight manner
+* **TILT (v)** - To move something so one end is higher than the other
 * **TIME (n)** — 1. A duration that you can measure; 2. An occurrence
 * **TO (prep)** — Function word that shows: - The direction of, point of arrival or time, connection, result, cause - That the word that follows is an infinitive
 * **TOGETHER (adv)** — In one group or position; For other meanings, use:; AT THE SAME TIME
@@ -500,25 +740,40 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **TOOL (n)** — An object used to make or do something
 * **TOP (adj)** — That is uppermost
 * **TOP (n)** — The uppermost position
+* **TORQUE (v)** - To tighten something to a specified turning force
 * **TOTAL (adj)** — All of
 * **TOTAL (n)** — The full quantity
+* **TOUCH (v)** - To put a part of the body on something
+* **TOW (v)** - To pull a vehicle or vessel with a rope or cable
+* **TRANSMIT (v)** - To send signals or energy from one place to another
+* **TRANSPORT (TN)** - The act of moving goods or people
 * **TRAVEL (n)** — The movement of an item
+* **TROUBLESHOOTING (TN)** - The act of finding and correcting faults
+* **TRY (v)** - To attempt to do something
 * **TURN (n)** — One full cycle of movement around an axis
+* **TWIST (v)** - To turn something with a turning movement
+* **TWO (TN)** - The number 2
 * **TYPE (n)** — A specified group
 * **TYPICAL (adj)** — That has the important qualities of a group
 * **UNIT (n)** — 1. Equipment that does a function; 2. A quantity that is a standard of measurement
 * **UNKNOWN (adj)** — Not known
 * **UNLESS (conj)** — Except if
+* **UNSATISFACTORILY (adv)** - In a way that is not acceptable
+* **UNSATISFACTORY (adj)** - Not acceptable
+* **UNSERVICEABLE (adj)** - Not in a condition that permits use
 * **UNTIL (conj)** — Up to the time that
 * **UNTIL (prep)** — Up to the time of
 * **UNUSUAL (adj)** — Not usual
 * **UNUSUALLY (adv)** — In an unusual manner
 * **UNWANTED (adj)** — That must not be there
+* **UNWIND (v)** - To straighten something that was wound
 * **UP (adj)** — In a position above
 * **UP (adv)** — To a position above
 * **UP (prep)** — To a position above
 * **UPSTREAM (adj)** — In a direction opposite to the flow
 * **UPSTREAM (adv)** — In a direction opposite to the flow
+* **USE (v)** - To do a task with something
+* **USED (adj)** - Not new; already employed
 * **USUAL (adj)** — That you use or that occurs most frequently
 * **USUALLY (adv)** — In a usual manner
 * **VALUE (n)** — A quantity that is calculated or given
@@ -532,7 +787,9 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **VOICE (n)** — The sound you make when you speak
 * **VOLUME (n)** — 1. The space that an object fills; 2. How loud a sound is
 * **WARM (adj)** — Moderately hot
+* **WARNING (TN)** - A notice that tells of danger
 * **WE (pron)** — The manufacturer or the company which releases the documentation Do not use this pronoun for other meanings.
+* **WEAK (adj)** - Easily broken or damaged
 * **WEATHER (n)** — Conditions of the atmosphere: temperature, moisture, winds, and clouds
 * **WEIGHT (n)** — The force caused when gravity acts on the mass of an object
 * **WHEN (conj)** — At the time that or during
@@ -541,13 +798,17 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **WHILE (conj)** — At the same time
 * **WHO (pron)** — The person or personnel that
 * **WIDTH (n)** — The smaller of two dimensions, the second- largest of three dimensions
+* **WIND (v)** - To wrap something around a spool or axis
 * **WITH (prep)** — Function word that shows association or relationship, help or sharing, a means or instrument
 * **WITHOUT (prep)** — Not with
 * **WORK (n)** — That which you do when you use physical strength, or mental power
+* **WORN (adj)** - Damaged by use
+* **WRITE (v)** - To make letters or words on a surface
 * **YES (adv)** — Function word that shows the positive answer to a question
 * **YOU (pron)** — The reader or the user
 * **YOUR (adj)** — Related to the reader or the user
 
+* **ZERO (TN)** - The number 0
 ## Unapproved Words (1323)
 
 * Subject → **Change**
