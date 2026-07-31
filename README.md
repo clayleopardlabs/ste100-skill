@@ -4,6 +4,8 @@ An AI coding assistant skill for **ASD-STE100 Simplified Technical English** - t
 
 Based on **Issue 8 (April 2021)** of the ASD-STE100 specification, originally developed for the aerospace and defense industry.
 
+Inspired by the video [The cure for AI slop is a 1986 aircraft manual](https://www.youtube.com/watch?v=uJblcC4lKYw).
+
 ## What It Does
 
 This skill teaches AI assistants to:
@@ -21,6 +23,25 @@ ste100/
     ├── dictionary.md              # Full controlled dictionary (543 approved, 1323 unapproved words)
     └── verb-tenses.md             # Approved/unapproved tenses, active vs passive, -ing rules
 ```
+
+### Required Reference Files
+
+The files in `references/` are required for the skill to work correctly. `SKILL.md` contains the writing rules, but it depends on these files for word validation and detailed verb and sentence guidance:
+
+- `references/dictionary.md` — required for approved-word, unapproved-word, part-of-speech, and alternative-word checks.
+- `references/verb-tenses.md` — required for verb-tense, voice, `-ing`, sentence-length, and safety-format checks.
+
+Install the complete `ste100/` directory. Do not copy `SKILL.md` by itself. Keep the `references/` directory at the same level as `SKILL.md`:
+
+```text
+ste100/
+├── SKILL.md
+└── references/
+    ├── dictionary.md
+    └── verb-tenses.md
+```
+
+If either reference file is missing or moved, the assistant cannot perform complete STE validation. After installation, verify that both files exist at `ste100/references/` before using the skill.
 
 ### Coverage
 
@@ -48,9 +69,21 @@ Each approved word is restricted to its specific part of speech and meaning. Exa
 
 ## Installation
 
+### Codex
+
+Install the complete repository as a skill directory in your user-level Codex skills folder:
+
+```bash
+git clone https://github.com/clayleopardlabs/ste100-skill.git ~/.agents/skills/ste100
+```
+
+Codex also supports repository-scoped skills at `.agents/skills/ste100/`. In both cases, keep `SKILL.md` and the complete `references/` directory together. Codex discovers the skill automatically. If it does not appear, restart Codex.
+
+You can invoke it explicitly with `$ste100`, or let Codex activate it when your request matches the skill description.
+
 ### OpenCode / Claude Code
 
-Place the `ste100/` folder in your skills directory:
+Place the complete `ste100/` folder, including `references/dictionary.md` and `references/verb-tenses.md`, in your skills directory:
 
 ```bash
 # OpenCode (auto-scanned)
