@@ -16,18 +16,18 @@ This skill teaches AI assistants to:
 
 ## Benchmark: STE100 vs. the Distilled "Cure for AI Slop" Skill
 
-Head-to-head test against the distilled STE skill from [woosal1337's "The cure for AI slop" experiment kit](https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop), using the kit's own deterministic anti-slop linter (`ste-lint.py`, violations per 100 words — lower is cleaner).
+Head-to-head test against the distilled STE skill from [woosal1337's "The cure for AI slop" experiment kit](https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop), using the kit's own deterministic anti-slop linter (`ste-lint.py`, violations per 100 words; lower is cleaner).
 
-**Method:** 6 writing tasks (README intro, error message, PR description, API docs, getting-started guide, deprecation notice). Each AI-slop baseline was rewritten with both skills by the same model, then all texts were linted. Included as a third condition: the [Feynman Style skill](https://github.com/clayleopardlabs/feynman-style-skill) — a mechanism-first writing skill (plain speech, terms come late, no hype words, no em/en dashes) for explaining and rewriting technical material.
+**Method:** 6 writing tasks (README intro, error message, PR description, API docs, getting-started guide, deprecation notice). Each AI-slop baseline was rewritten with both skills by the same model, then all texts were linted. Included as a third condition: the [Feynman Style skill](https://github.com/clayleopardlabs/feynman-style-skill), a mechanism-first writing skill (plain speech, terms come late, no hype words, no em/en dashes) for explaining and rewriting technical material.
 
 | Condition | README | Error | PR | API | Getting started | Deprecation | **Avg** | **vs. baseline** |
 |---|---|---|---|---|---|---|---|---|
-| Baseline (AI slop) | 8.92 | 9.28 | 6.02 | 8.80 | 8.02 | 8.38 | **8.24** | — |
+| Baseline (AI slop) | 8.92 | 9.28 | 6.02 | 8.80 | 8.02 | 8.38 | **8.24** | n/a |
 | Distilled skill (woosal1337) | 1.59 | 0.00 | 0.00 | 0.00 | 0.74 | 0.00 | **0.39** | −95.3% |
 | **This skill (ste100)** | 1.35 | 0.00 | 0.00 | 0.00 | 0.74 | 0.00 | **0.35** | **−95.8%** |
 | Feynman skill (with em-dash rule) | 2.34 | 2.41 | 2.31 | 1.59 | 1.78 | 2.19 | 2.10 | −74.5% |
 
-**Honest caveats:** raw violation counts tied 3–3; the per-100-words margin comes from word-count normalization, not fewer violations. Both STE skills converge to near-zero because the linter is the machine-checkable subset of STE — a distilled skill and a dictionary-backed skill both clear it. n=6, single model, heuristic linter: directional, not proof.
+**Honest caveats:** raw violation counts tied 3–3; the per-100-words margin comes from word-count normalization, not fewer violations. Both STE skills converge to near-zero because the linter is the machine-checkable subset of STE: a distilled skill and a dictionary-backed skill both clear it. n=6, single model, heuristic linter: directional, not proof.
 
 ## Skill Contents
 
@@ -43,8 +43,8 @@ ste100/
 
 The files in `references/` are required for the skill to work correctly. `SKILL.md` contains the writing rules, but it depends on these files for word validation and detailed verb and sentence guidance:
 
-- `references/dictionary.md` — required for approved-word, unapproved-word, part-of-speech, and alternative-word checks.
-- `references/verb-tenses.md` — required for verb-tense, voice, `-ing`, sentence-length, and safety-format checks.
+- `references/dictionary.md` is required for approved-word, unapproved-word, part-of-speech, and alternative-word checks.
+- `references/verb-tenses.md` is required for verb-tense, voice, `-ing`, sentence-length, and safety-format checks.
 
 Install the complete `ste100/` directory. Do not copy `SKILL.md` by itself. Keep the `references/` directory at the same level as `SKILL.md`:
 
