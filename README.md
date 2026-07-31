@@ -25,7 +25,6 @@ Head-to-head test against the distilled STE skill from [woosal1337's "The cure f
 | Baseline (AI slop) | 8.92 | 9.28 | 6.02 | 8.80 | 8.02 | 8.38 | **8.24** | — |
 | Distilled skill (woosal1337) | 1.59 | 0.00 | 0.00 | 0.00 | 0.74 | 0.00 | **0.39** | −95.3% |
 | **This skill (ste100)** | 1.35 | 0.00 | 0.00 | 0.00 | 0.74 | 0.00 | **0.35** | **−95.8%** |
-| Feynman skill (no em-dash rule) | 2.34 | 2.41 | 2.31 | 1.99 | 2.37 | 2.19 | 2.27 | −72.5% |
 | Feynman skill (with em-dash rule) | 2.34 | 2.41 | 2.31 | 1.59 | 1.78 | 2.19 | 2.10 | −74.5% |
 
 **Honest caveats:** raw violation counts tied 3–3; the per-100-words margin comes from word-count normalization, not fewer violations. Both STE skills converge to near-zero because the linter is the machine-checkable subset of STE — a distilled skill and a dictionary-backed skill both clear it. n=6, single model, heuristic linter: directional, not proof.
