@@ -14,6 +14,21 @@ This skill teaches AI assistants to:
 - **Check** word choice against the full STE controlled dictionary (543 approved + 1,323 unapproved words)
 - **Correct** sentence structure, verb tenses, noun clusters, and safety formatting
 
+## Complete vs. Distilled
+
+This is the **complete** implementation of the STE specification. The [distilled version](https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop) from woosal1337's "cure for AI slop" kit is the other way to ship it: a compact two-mode skill (strict and flavored) that teaches the mechanical rules and links out to the official standard.
+
+| | Distilled (woosal1337) | This skill |
+|---|---|---|
+| Rules | Mechanical subset | All 53 rules, 9 sections |
+| Dictionary | None, links to the official standard | Full controlled dictionary (86 KB, 543 approved + 1,323 unapproved words) |
+| Strongest at | Quick rewriting | Validation, word lookup, rewriting |
+| Install weight | Single small file | SKILL.md + 2 reference files |
+
+The distilled version is the lighter fit when you only want everyday rewriting instructions. This skill is the reference implementation: it can validate a document against all 53 rules and answer word-level questions such as "Is 'utilize' an approved STE word?" against the controlled dictionary.
+
+The benchmark below shows both clear the anti-slop test at essentially the same level. The difference between the two is coverage, not cleaning power.
+
 ## Benchmark: STE100 vs. the Distilled "Cure for AI Slop" Skill
 
 Head-to-head test against the distilled STE skill from [woosal1337's "The cure for AI slop" experiment kit](https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop), using the kit's own deterministic anti-slop linter (`ste-lint.py`, violations per 100 words; lower is cleaner).
@@ -144,4 +159,4 @@ This skill is based on **ASD-STE100 Issue 8, April 2021** (European Community Tr
 
 ## License
 
-This skill is a reference implementation based on the public ASD-STE100 specification. The specification itself is copyright (c) ASD. This skill file is provided for reference and educational use.
+This skill is a reference implementation based on the public ASD-STE100 specification. The specification itself is copyright (c) ASD. The dictionary is an assembled reference listing of approved and unapproved terminology (word collections and factual terms are not copied verbatim as prose from the guide book), included to make the skill self-contained. This skill file is provided for reference and educational use.
