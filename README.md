@@ -14,6 +14,22 @@ This skill teaches AI assistants to:
 - **Check** word choice against the full STE controlled dictionary (543 approved + 1,323 unapproved words)
 - **Correct** sentence structure, verb tenses, noun clusters, and safety formatting
 
+## Benchmark: STE100 vs. the Distilled "Cure for AI Slop" Skill
+
+Head-to-head test against the distilled STE skill from [woosal1337's "The cure for AI slop" experiment kit](https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop), using the kit's own deterministic anti-slop linter (`ste-lint.py`, violations per 100 words — lower is cleaner).
+
+**Method:** 6 writing tasks (README intro, error message, PR description, API docs, getting-started guide, deprecation notice). Each AI-slop baseline was rewritten with both skills by the same model, then all texts were linted. Included as a third condition: the Feynman Style writing skill, retested after adding an em-dash restriction.
+
+| Condition | README | Error | PR | API | Getting started | Deprecation | **Avg** | **vs. baseline** |
+|---|---|---|---|---|---|---|---|---|
+| Baseline (AI slop) | 8.92 | 9.28 | 6.02 | 8.80 | 8.02 | 8.38 | **8.24** | — |
+| Distilled skill (woosal1337) | 1.59 | 0.00 | 0.00 | 0.00 | 0.74 | 0.00 | **0.39** | −95.3% |
+| **This skill (ste100)** | 1.35 | 0.00 | 0.00 | 0.00 | 0.74 | 0.00 | **0.35** | **−95.8%** |
+| Feynman skill (no em-dash rule) | 2.34 | 2.41 | 2.31 | 1.99 | 2.37 | 2.19 | 2.27 | −72.5% |
+| Feynman skill (with em-dash rule) | 2.34 | 2.41 | 2.31 | 1.59 | 1.78 | 2.19 | 2.10 | −74.5% |
+
+**Honest caveats:** raw violation counts tied 3–3; the per-100-words margin comes from word-count normalization, not fewer violations. Both STE skills converge to near-zero because the linter is the machine-checkable subset of STE — a distilled skill and a dictionary-backed skill both clear it. n=6, single model, heuristic linter: directional, not proof.
+
 ## Skill Contents
 
 ```
