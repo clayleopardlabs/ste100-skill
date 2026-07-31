@@ -18,7 +18,7 @@ This skill teaches AI assistants to:
 
 Head-to-head test against the distilled STE skill from [woosal1337's "The cure for AI slop" experiment kit](https://github.com/woosal1337/blog/tree/main/videos/ep01-the-cure-for-ai-slop), using the kit's own deterministic anti-slop linter (`ste-lint.py`, violations per 100 words — lower is cleaner).
 
-**Method:** 6 writing tasks (README intro, error message, PR description, API docs, getting-started guide, deprecation notice). Each AI-slop baseline was rewritten with both skills by the same model, then all texts were linted. Included as a third condition: the Feynman Style writing skill, retested after adding an em-dash restriction.
+**Method:** 6 writing tasks (README intro, error message, PR description, API docs, getting-started guide, deprecation notice). Each AI-slop baseline was rewritten with both skills by the same model, then all texts were linted. Included as a third condition: the [Feynman Style skill](https://github.com/clayleopardlabs/feynman-style-skill) — a mechanism-first writing skill (plain speech, terms come late, no hype words, no em/en dashes) for explaining and rewriting technical material.
 
 | Condition | README | Error | PR | API | Getting started | Deprecation | **Avg** | **vs. baseline** |
 |---|---|---|---|---|---|---|---|---|
