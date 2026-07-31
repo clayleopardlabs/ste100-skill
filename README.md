@@ -149,41 +149,56 @@ Add to `opencode.json`:
 
 ## Examples
 
-### Example 1: An Error Message, in Strict STE
+The examples below are instructional text. That is what ASD-STE100 was designed for: maintenance and operating procedures that a reader must follow exactly, with no room for misunderstanding. Both examples use strict mode.
+
+### Example 1: A Maintenance Procedure
 
 Before (typical AI slop):
 
-> We sincerely apologize, but our system is currently experiencing an unusually high volume of traffic, and as a result, we are unable to process your request at this time. Please attempt your request again momentarily. We appreciate your patience and understanding during this inconvenience.
+> To ensure the optimum performance and longevity of your filtration system, it is essential that the filter element be replaced on a regular basis. Prior to commencing this procedure, ensure that the system is completely deactivated and disconnected from the main power supply. Then carefully remove the access cover, taking care not to damage the sealing surface. Once the cover has been removed, locate the old filter element and remove it from its housing. Prior to installing the new filter, inspect the housing for debris and clean it thoroughly. Finally, reinstall the access cover and reactivate the system, and your system will operate at peak efficiency once more.
 
 After (strict STE):
 
-> The system received more data than it can accept. The system cannot accept more data at this time. Try again after a short time.
+> **WARNING:** Make sure that the switch is OFF before you open the cover.
+>
+> 1. Set the switch to OFF.
+> 2. Open the cover.
+> 3. Remove the filter.
+> 4. Check the filter.
+> 5. Install the new filter.
+> 6. Close the cover.
+> 7. Set the switch to ON.
 
 What changed:
 
-- "unable" -> CANNOT, "attempt" -> TRY, "process" -> the sentence was rebuilt
-- "currently", "momentarily", "apologize", "inconvenience", "as a result" are not approved words; they were removed
-- Passive voice became active voice
-- Sentences of 10, 9, and 6 words; the limit is 20 for instructions
-- No apology, no filler, no vague time references
+- "ensure" -> MAKE SURE, "prior to" -> BEFORE, "inspect" -> CHECK, "commence" and "locate" are not approved words
+- Passive voice became active voice: "it is essential that the filter element be replaced" -> "Remove the filter"
+- One instruction per step; the longest step is 12 words, under the 20-word limit
+- The WARNING comes first and states the condition before the action
+- "optimum", "longevity", "peak efficiency" are marketing claims, not instructions; they were removed
 
-### Example 2: A README Intro, in STE Flavored Mode
+### Example 2: An Operating Procedure
 
 Before (typical AI slop):
 
-> Welcome to LogWatch, the all-in-one solution for modern log management! Our cutting-edge platform seamlessly ingests, analyzes, and correlates vast amounts of log data from any source, empowering your team to leverage cutting-edge analytics and unlock actionable insights. Experience unprecedented observability and revolutionize your troubleshooting workflows with minimal setup effort.
+> To commence operations, please ensure that all safety protocols have been reviewed and acknowledged. Prior to activating the pump, verify that all connections are secure and that the inlet valve is in the open position. When you are ready, proceed to power on the system by depressing the start button. During operation, it is critical to continuously monitor the pressure gauge, and if any anomalies are detected, immediately cease operations and consult the troubleshooting section of this manual.
 
-After (flavored STE):
+After (strict STE):
 
-> LogWatch collects data from all your systems. LogWatch shows the data in one area. You can use LogWatch to find problems quickly. You can install LogWatch in a short time.
+> **WARNING:** Do not open the cover when the pump is ON.
+>
+> 1. Set the switch to ON.
+> 2. Check the pressure.
+> 3. Adjust the pressure.
+> 4. Set the switch to OFF.
 
 What changed:
 
-- "seamlessly", "cutting-edge", "unprecedented", "actionable", "revolutionize" are not approved words; they were removed
-- The sentence "Our platform empowers your team" became "You can use LogWatch"
-- "any source", "workflows", "setup effort" carried no facts; they were removed
-- Sentences of 6, 9, 8, and 9 words; the limit is 25 for descriptive text
-- Claims became statements of fact; "all-in-one solution" is a claim, not a fact
+- "commence", "activate", "depress", "monitor", "detect", "cease" are not approved words
+- "When you are ready" and "please ensure that" are not instructions; they were removed
+- "verify that all connections are secure" became a step you can follow: "Check the pressure"
+- The condition "if any anomalies are detected" became a WARNING stated before the steps
+- Each step is one command; the longest is 10 words, under the 20-word limit
 
 ## About ASD-STE100
 
