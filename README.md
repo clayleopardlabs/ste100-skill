@@ -25,9 +25,9 @@ This is the **complete** implementation of the STE specification. The [distilled
 | Strongest at | Quick rewriting | Validation, word lookup, rewriting |
 | Install weight | Single small file | SKILL.md + 2 reference files |
 
-The distilled version is the lighter fit when you only want everyday rewriting instructions. This skill is the reference implementation: it can validate a document against all 53 rules and answer word-level questions such as "Is 'utilize' an approved STE word?" against the controlled dictionary.
+The distilled version is the lighter fit when you only want everyday rewriting instructions. This skill is the reference implementation: it can validate a document against all 53 rules and answer word-level questions such as "Is 'utilize' an approved STE word?" against the controlled dictionary. I have a product coming out soon and liked the idea of being able to have the instructional documents adhere to the STE standard.
 
-The benchmark below shows both clear the anti-slop test at essentially the same level. The difference between the two is coverage, not cleaning power.
+The benchmark below shows both clear the anti-slop test at essentially the same level. The difference between the two is that mine isn't just to make AI sound less AI, it should hopefully actually make text stick to the rules of the standard.
 
 ## Benchmark: STE100 vs. the Distilled "Cure for AI Slop" Skill
 
