@@ -209,37 +209,47 @@ Before (typical AI slop):
 After (strict STE):
 
 > **WARNING:** Do this operation only in a sterile operating room. If you do not have surgical training, do not do this operation.
->
-> 1. Put the patient on their back.
-> 2. Give the patient general anesthesia.
-> 3. Clean the abdomen with antiseptic solution.
-> 4. Cover the abdomen with sterile drapes.
-> 5. Make a small incision in the lower right abdomen at McBurney's point.
-> 6. Insert the Veress needle at the umbilicus.
-> 7. Fill the abdomen with carbon dioxide gas.
-> 8. Wait until the abdominal wall rises.
-> 9. Insert the camera port at the umbilicus.
-> 10. Insert two instrument ports in the lower abdomen.
-> 11. Look at the abdominal organs on the monitor.
-> 12. Find the appendix where the appendix joins the cecum.
-> 13. Grasp the appendix with the forceps.
-> 14. Pull the appendix upward.
-> 15. Cut the mesoappendix with the cautery tool.
-> 16. Tie the blood vessels in the mesoappendix.
-> 17. Tie the base of the appendix twice with suture loops.
-> 18. Make the ties 5 mm from the cecum.
-> 19. Cut the appendix between the two ties.
-> 20. Remove the appendix through the camera port.
-> 21. Check the area for blood.
-> 22. Remove the gas from the abdomen.
-> 23. Close the muscle layer with suture.
-> 24. Close the skin with suture or staples.
-> 25. Cover the wound with a sterile dressing.
-> 26. Send the patient to the recovery room.
+
+Preparation:
+- Put the patient on their back.
+- Give the patient general anesthesia.
+- Clean the abdomen with antiseptic solution.
+- Cover the abdomen with sterile drapes.
+- Make a small incision in the lower right abdomen at McBurney's point.
+
+Access:
+- Insert the Veress needle at the umbilicus.
+- Fill the abdomen with carbon dioxide gas.
+- Wait until the abdominal wall rises.
+- Insert the camera port at the umbilicus.
+- Insert two instrument ports in the lower abdomen.
+
+Locate the appendix:
+- Look at the abdominal organs on the monitor.
+- Find the appendix where the appendix joins the cecum.
+- Grasp the appendix with the forceps.
+- Pull the appendix upward.
+- Cut the mesoappendix with the cautery tool.
+
+Remove the appendix:
+- Tie the blood vessels in the mesoappendix.
+- Tie the base of the appendix twice with suture loops.
+- Make the ties 5 mm from the cecum.
+- Cut the appendix between the two ties.
+- Remove the appendix through the camera port.
+
+Close the wound:
+- Check the area for blood.
+- Remove the gas from the abdomen.
+- Close the muscle layer with suture.
+- Close the skin with suture or staples.
+- Cover the wound with a sterile dressing.
+- Send the patient to the recovery room.
 
 What changed:
 
 - A 120-word run-on paragraph became 26 one-command steps, each a single complete action
+- The steps are grouped into 5 vertical lists of at most 6 items, as the spec requires (Rules 4.3, 8.4, 8.5)
 - Passive voice became imperative commands: "it is grasped with atraumatic forceps" -> "Grasp the appendix with the forceps"
 - Jargon was replaced with plain wording: "pneumoperitoneum" -> "carbon dioxide gas", "hemostasis is confirmed" -> "Check the area for blood"
 - Ambiguous pronouns became repeated nouns: "it", "the specimen" -> "the appendix" every time
