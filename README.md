@@ -200,6 +200,52 @@ What changed:
 - The condition "if any anomalies are detected" became a WARNING stated before the steps
 - Each step is one command; the longest is 10 words, under the 20-word limit
 
+### Example 3: A Surgical Procedure
+
+Before (typical AI slop):
+
+> The patient is positioned supine and general anesthesia is administered, after which the abdomen is prepped and draped in the usual sterile fashion; a pneumoperitoneum is then established via Veress needle insertion at the umbilicus with CO2 insufflation to approximately 12-15 mmHg, and once adequate working space has been achieved, a 10 mm trocar is introduced for the camera while two additional 5 mm ports are placed in the left lower quadrant and suprapubic region under direct visualization; following abdominal exploration, the appendix is identified at its origin from the cecum by tracing the taeniae coli, and it is grasped with atraumatic forceps and retracted superiorly, after which the mesoappendix is divided with electrocautery and the appendicular artery is clipped; the base is then doubly ligated with Vicryl endoloops approximately 5 mm from the cecal wall, crushed with a Kelly clamp, and transected with scissors, with the specimen removed through the 10 mm port; finally, hemostasis is confirmed under direct vision, the CO2 is evacuated, and the fascia is closed with interrupted 0-Vicryl if the port site is greater than 10 mm, followed by skin closure with subcuticular 3-0 Monocryl and sterile dressings, and the patient is monitored in recovery.
+
+After (strict STE):
+
+> **WARNING:** Do this operation only in a sterile operating room. If you do not have surgical training, do not do this operation.
+>
+> 1. Put the patient on their back.
+> 2. Give the patient general anesthesia.
+> 3. Clean the abdomen with antiseptic solution.
+> 4. Cover the abdomen with sterile drapes.
+> 5. Make a small incision in the lower right abdomen at McBurney's point.
+> 6. Insert the Veress needle at the umbilicus.
+> 7. Fill the abdomen with carbon dioxide gas.
+> 8. Wait until the abdominal wall rises.
+> 9. Insert the camera port at the umbilicus.
+> 10. Insert two instrument ports in the lower abdomen.
+> 11. Look at the abdominal organs on the monitor.
+> 12. Find the appendix where the appendix joins the cecum.
+> 13. Grasp the appendix with the forceps.
+> 14. Pull the appendix upward.
+> 15. Cut the mesoappendix with the cautery tool.
+> 16. Tie the blood vessels in the mesoappendix.
+> 17. Tie the base of the appendix twice with suture loops.
+> 18. Make the ties 5 mm from the cecum.
+> 19. Cut the appendix between the two ties.
+> 20. Remove the appendix through the camera port.
+> 21. Check the area for blood.
+> 22. Remove the gas from the abdomen.
+> 23. Close the muscle layer with suture.
+> 24. Close the skin with suture or staples.
+> 25. Cover the wound with a sterile dressing.
+> 26. Send the patient to the recovery room.
+
+What changed:
+
+- A 120-word run-on paragraph became 26 one-command steps, each a single complete action
+- Passive voice became imperative commands: "it is grasped with atraumatic forceps" -> "Grasp the appendix with the forceps"
+- Jargon was replaced with plain wording: "pneumoperitoneum" -> "carbon dioxide gas", "hemostasis is confirmed" -> "Check the area for blood"
+- Ambiguous pronouns became repeated nouns: "it", "the specimen" -> "the appendix" every time
+- The WARNING comes first and states who may do the operation (Rule 7.1)
+- Every step from the original is preserved - STE simplifies the phrasing, never the content (Rule 4.2)
+
 ## About ASD-STE100
 
 ASD-STE100 is an international specification maintained by the **AeroSpace and Defence Industries Association of Europe (ASD)**. It was originally developed in 1986 as the AECMA Simplified English Guide and is required by ATA for aerospace maintenance documentation.
