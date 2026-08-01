@@ -48,30 +48,90 @@ Head-to-head test against the distilled STE skill from [woosal1337's "The cure f
 
 ```
 ste100/
-├── SKILL.md                       # Main skill - all 9 sections x 53 rules, tech verb categories
+├── SKILL.md                       # Main skill - rule index, verification protocol, rewrite guidance
+├── ste100-verify/
+│   └── SKILL.md                   # Verification-only skill - lints existing text rule by rule
 └── references/
     ├── dictionary.md              # Full controlled dictionary (804 approved, 1323 unapproved words)
-    └── verb-tenses.md             # Approved/unapproved tenses, active vs passive, -ing rules
+    ├── lookup.py                  # Word lookup tool - queries the dictionary one word at a time
+    ├── ste_check.py               # Mechanical linter - checks text against the machine-checkable rules
+    ├── verb-tenses.md             # Approved/unapproved tenses, active vs passive, -ing rules
+    └── rules/
+        ├── 01-words.md            # Section 1 deep dive: words, technical names (20 categories), technical verbs
+        ├── 02-noun-clusters.md    # Section 2 deep dive: 3-word limit, hyphens, articles
+        ├── 03-verbs.md            # Section 3 deep dive: tenses, -ing, active voice, one action per sentence
+        ├── 04-sentences.md        # Section 4 deep dive: word limits, vertical lists, connectors
+        ├── 05-procedural-writing.md  # Section 5 deep dive: imperative steps, conditions, list structure
+        ├── 06-descriptive-writing.md # Section 6 deep dive: description vs procedure, paragraph shape
+        ├── 07-safety-instructions.md # Section 7 deep dive: WARNING vs CAUTION formatting
+        ├── 08-punctuation.md      # Section 8 deep dive: semicolons, hyphens, list limits, abbreviations
+        └── 09-writing-practices.md   # Section 9 deep dive: consistency, positive statements, GR rules
 ```
+
+The agent loads only the rule index from SKILL.md and reads the per-section deep dives on demand, so it never needs to hold all 53 rules in context. Word checks run through `lookup.py` instead of reading the 86 KB dictionary, and the `ste_check.py` linter handles the mechanical rules in one pass.
+
+### Mechanical verification (why the agent can stop guessing)
+
+The skill enforces a mandatory write-then-verify loop:
+
+1. Write the draft
+2. Run the linter: `python references/ste_check.py draft.md`
+3. Fix one rule at a time — query `python references/lookup.py <word>` for alternatives, or justify a word as a technical name with `--allow`
+4. Re-lint until 0 errors, then judge the warnings against the section files
+
+Example — the linter catches what a reviewer misses:
+
+```bash
+$ python references/ste_check.py before.md
+ERROR   [Rule 1.1/1.6] line 1: unapproved word: 'fashion' - use PROCEDURE (n)
+ERROR   [Rule 1.1/1.6] line 1: unapproved word: 'via' - use THROUGH (prep)
+ERROR   [Rule 1.1/1.6] line 1: unapproved word: 'adequate' - use SUFFICIENT (adj)
+ERROR   [Rule 4.1/8.7] line 1: sentence has 193 words (limit 25)
+ERROR   [Rule 8.1] line 1: semicolon used; prefer separate sentences
+...
+18 errors, 6 warnings
+
+$ python references/ste_check.py after.md --allow port
+0 errors, 0 warnings
+```
+
+Warnings are heuristics (-ing forms, passive voice, noun clusters, complex tenses) that always need a deliberate judgment call; errors are deterministic and must all be fixed.
 
 ### Required Reference Files
 
-The files in `references/` are required for the skill to work correctly. `SKILL.md` contains the writing rules, but it depends on these files for word validation and detailed verb and sentence guidance:
+The files in `references/` are required for the skill to work correctly. `SKILL.md` contains the rule index and verification protocol, but it depends on these files for word validation, mechanical checking, and detailed verb and sentence guidance:
 
 - `references/dictionary.md` is required for approved-word, unapproved-word, part-of-speech, and alternative-word checks.
+- `references/lookup.py` queries the dictionary one word at a time (the agent must not read the full dictionary into context).
+- `references/ste_check.py` is the mechanical linter the verification protocol runs on every draft.
 - `references/verb-tenses.md` is required for verb-tense, voice, `-ing`, sentence-length, and safety-format checks.
+- `references/rules/` contains the per-section rule deep dives, read on demand.
 
 Install the complete `ste100/` directory. Do not copy `SKILL.md` by itself. Keep the `references/` directory at the same level as `SKILL.md`:
 
 ```text
 ste100/
 ├── SKILL.md
+├── ste100-verify/
+│   └── SKILL.md
 └── references/
     ├── dictionary.md
-    └── verb-tenses.md
+    ├── lookup.py
+    ├── ste_check.py
+    ├── verb-tenses.md
+    └── rules/
+        ├── 01-words.md
+        ├── 02-noun-clusters.md
+        ├── 03-verbs.md
+        ├── 04-sentences.md
+        ├── 05-procedural-writing.md
+        ├── 06-descriptive-writing.md
+        ├── 07-safety-instructions.md
+        ├── 08-punctuation.md
+        └── 09-writing-practices.md
 ```
 
-If either reference file is missing or moved, the assistant cannot perform complete STE validation. After installation, verify that both files exist at `ste100/references/` before using the skill.
+If any of these files is missing or moved, the assistant cannot perform complete STE validation. After installation, verify that the files exist at `ste100/references/` before using the skill. Python 3.8+ is required for `lookup.py` and `ste_check.py` (both scripts have no external dependencies).
 
 ### Coverage
 
@@ -145,7 +205,10 @@ Add to `opencode.json`:
 "Is 'utilize' an approved STE word?"
 "Convert this instruction to Simplified Technical English: [text]"
 "What's wrong with this sentence: [text]"
+"Run the STE linter on procedure.md"
 ```
+
+The `ste100-verify` skill (shipped alongside) is the verification-only mode: it lints existing text and walks through the findings one rule at a time. The `ste100` skill covers writing, rewriting, and verification together.
 
 ## Examples
 
@@ -161,11 +224,11 @@ After (strict STE):
 
 > **WARNING:** Make sure that the switch is OFF before you open the cover.
 
-Remove the old filter:
+Remove the used filter:
 - Set the switch to OFF.
 - Open the cover.
 - Remove the filter.
-- Check the filter.
+- Examine the filter.
 
 Install the new filter:
 - Install the new filter.
@@ -174,7 +237,7 @@ Install the new filter:
 
 What changed:
 
-- "ensure" -> MAKE SURE, "prior to" -> BEFORE, "inspect" -> CHECK, "commence" and "locate" are not approved words
+- "ensure" -> MAKE SURE, "prior to" -> BEFORE, "inspect" -> EXAMINE, "commence" and "locate" are not approved words
 - Passive voice became active voice: "it is essential that the filter element be replaced" -> "Remove the filter"
 - One instruction per step; the longest step is 12 words, under the 20-word limit
 - Steps are grouped into two vertical lists of at most 6 items, with bullets (Rules 4.3, 8.4, 8.5)
@@ -192,7 +255,7 @@ After (strict STE):
 > **WARNING:** Do not open the cover when the pump is ON.
 >
 > - Set the switch to ON.
-> - Check the pressure.
+> - Examine the pressure.
 > - Adjust the pressure.
 > - Set the switch to OFF.
 
@@ -200,7 +263,7 @@ What changed:
 
 - "commence", "activate", "depress", "monitor", "detect", "cease" are not approved words
 - "When you are ready" and "please ensure that" are not instructions; they were removed
-- "verify that all connections are secure" became a step you can follow: "Check the pressure"
+- "verify that all connections are secure" became a step you can follow: "Examine the pressure"
 - The condition "if any anomalies are detected" became a WARNING stated before the steps
 - Each step is one command in a vertical list of 4 items (Rules 4.3, 8.4, 8.5); the longest is 10 words, under the 20-word limit
 
@@ -212,9 +275,9 @@ Before (typical AI slop):
 
 After (strict STE):
 
-> **WARNING:** Do this operation only in a sterile operating room. If you do not have surgical training, do not do this operation.
+> **WARNING:** Do this operation only in a room for surgery. If you are not a surgeon, do not do this operation.
 
-Preparation:
+Prepare the patient:
 - Put the patient on their back.
 - Give the patient general anesthesia.
 - Clean the abdomen with antiseptic solution.
@@ -222,40 +285,42 @@ Preparation:
 - Make a small incision in the lower right abdomen at McBurney's point.
 
 Access:
-- Insert the Veress needle at the umbilicus.
+- Put the Veress needle at the umbilicus.
 - Fill the abdomen with carbon dioxide gas.
 - Wait until the abdominal wall rises.
-- Insert the camera port at the umbilicus.
-- Insert two instrument ports in the lower abdomen.
+- Put the camera port at the umbilicus.
+- Put two instrument ports in the lower abdomen.
 
-Locate the appendix:
+Find the appendix:
 - Look at the abdominal organs on the monitor.
-- Find the appendix where the appendix joins the cecum.
-- Grasp the appendix with the forceps.
-- Pull the appendix upward.
+- Find the appendix where the appendix attaches to the cecum.
+- Hold the appendix with the forceps.
+- Pull the appendix up.
 - Cut the mesoappendix with the cautery tool.
 
 Remove the appendix:
-- Tie the blood vessels in the mesoappendix.
-- Tie the base of the appendix twice with suture loops.
-- Make the ties 5 mm from the cecum.
-- Cut the appendix between the two ties.
+- Attach the blood vessels in the mesoappendix.
+- Attach the lower part of the appendix twice with suture loops.
+- Make the loops 5 mm from the cecum.
+- Cut the appendix between the two loops.
 - Remove the appendix through the camera port.
 
 Close the wound:
-- Check the area for blood.
+- Examine the area for blood.
 - Remove the gas from the abdomen.
 - Close the muscle layer with suture.
 - Close the skin with suture or staples.
-- Cover the wound with a sterile dressing.
+- Cover the wound with a sterile bandage.
 - Send the patient to the recovery room.
 
 What changed:
 
 - A 120-word run-on paragraph became 26 one-command steps, each a single complete action
 - The steps are grouped into 5 vertical lists of at most 6 items, as the spec requires (Rules 4.3, 8.4, 8.5)
-- Passive voice became imperative commands: "it is grasped with atraumatic forceps" -> "Grasp the appendix with the forceps"
-- Jargon was replaced with plain wording: "pneumoperitoneum" -> "carbon dioxide gas", "hemostasis is confirmed" -> "Check the area for blood"
+- Passive voice became imperative commands: "it is grasped with atraumatic forceps" -> "Hold the appendix with the forceps"
+- Jargon was replaced with plain wording: "pneumoperitoneum" -> "carbon dioxide gas", "hemostasis is confirmed" -> "Examine the area for blood"
+- Unapproved dictionary words were replaced with approved ones: INSERT -> PUT, GRASP -> HOLD, TIE -> ATTACH, JOIN -> ATTACH, UPWARD -> UP, LOCATE -> FIND
+- "port" is not an approved word, but it is the standard name for the part in this procedure - it is kept as a technical name and passed to the linter with `--allow port`
 - Ambiguous pronouns became repeated nouns: "it", "the specimen" -> "the appendix" every time
 - The WARNING comes first and states who may do the operation (Rule 7.1)
 - Every step from the original is preserved - STE simplifies the phrasing, never the content (Rule 4.2)
