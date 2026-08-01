@@ -12,8 +12,8 @@
 | 6 | 4 | "Remove the cover; pull out the element." — **semicolon** | Rule 8.1 (semicolon misuse) | "Remove the cover. Pull out the element." |
 | 7 | 5 | "Use a tool, **e.g.** a wrench, ..." | GR-6 (Latin abbreviation) | "Use a tool, for example a wrench, ..." |
 | 8 | 6 | "Use a clean cloth, **etc.** to clean the valve." | GR-6 (Latin abbreviation) | "Use a clean cloth to clean the valve." |
-| 9 | 7 | "while **holding** the valve" — **-ing form** | Rule 3.5 (-ing form) | "Hold the wrench with the left hand. Hold the valve." |
-| 10 | 8 | "while **checking** the fluid level" — **-ing form** | Rule 3.5 (-ing form) | "Examine the seal. Examine the fluid level." |
+| 9 | 7 | "while **holding** the valve" — **-ing form** | Rule 3.5 (-ing form) + 3.7 (while-join) | "Hold the wrench with the left hand. Hold the valve." |
+| 10 | 8 | "while **checking** the fluid level" — **-ing form** | Rule 3.5 (-ing form) + 3.7 (while-join) | "Examine the seal. Examine the fluid level." |
 | 11 | 9 | "The operator **has completed** the repair." — **present perfect** | Rule 3.2/3.4 (complex verb tense) | "The operator completed the repair." |
 | 12 | 10 | "The technicians **have installed** the new pump." — **present perfect** | Rule 3.2/3.4 (complex verb tense) | "The technicians installed the new pump." |
 | 13 | 11 | "The cover **is removed by** the operator." — **passive** | Rule 3.6 (passive voice) | "The operator removes the cover." |

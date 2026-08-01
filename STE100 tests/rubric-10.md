@@ -1,6 +1,6 @@
 # Rubric: test-10
 
-**Target: 24 violations** (12 ERROR, 12 WARNING) — three of every violation kind. The paragraph is otherwise perfect STE.
+**Target: 24 violations** (12 ERROR, 12 WARNING) — three of every violation kind. The paragraph is otherwise perfect STE. Note: the three -ing violation lines (10-12) each also carry a Rule 3.7 while-join warning, so the linter reports 12 errors, 15 warnings; the required correction splits the sentence and fixes both.
 
 | # | Line | Offending text | Rule | Correction |
 |---|------|----------------|------|------------|
@@ -16,9 +16,9 @@
 | 10 | 7 | "Use a tool, **e.g.** a wrench, ..." | GR-6 (Latin abbreviation) | "Use a tool, for example a wrench, ..." |
 | 11 | 8 | "Use a clean cloth, **etc.** to clean the valve." | GR-6 (Latin abbreviation) | "Use a clean cloth to clean the valve." |
 | 12 | 9 | "Examine the seal **i.e.** the gasket for damage." | GR-6 (Latin abbreviation) | "Examine the seal, that is the gasket, for damage." |
-| 13 | 10 | "while **holding** the valve" — **-ing form** | Rule 3.5 (-ing form) | "Hold the wrench with the left hand. Hold the valve." |
-| 14 | 11 | "while **checking** the fluid level" — **-ing form** | Rule 3.5 (-ing form) | "Examine the seal. Examine the fluid level." |
-| 15 | 12 | "while **draining** the fluid" — **-ing form** | Rule 3.5 (-ing form) | "Operate the pump. Drain the fluid from the tank." |
+| 13 | 10 | "while **holding** the valve" - **-ing form** | Rule 3.5 (-ing form) + 3.7 (while-join) | "Hold the wrench with the left hand. Hold the valve." |
+| 14 | 11 | "while **checking** the fluid level" - **-ing form** | Rule 3.5 (-ing form) + 3.7 (while-join) | "Examine the seal. Examine the fluid level." |
+| 15 | 12 | "while **draining** the fluid" - **-ing form** | Rule 3.5 (-ing form) + 3.7 (while-join) | "Operate the pump. Drain the fluid from the tank." |
 | 16 | 13 | "The operator **has completed** the repair." — **present perfect** | Rule 3.2/3.4 (complex verb tense) | "The operator completed the repair." |
 | 17 | 14 | "The technicians **have installed** the new pump." — **present perfect** | Rule 3.2/3.4 (complex verb tense) | "The technicians installed the new pump." |
 | 18 | 15 | "The fluid **has drained** from the tank." — **present perfect** | Rule 3.2/3.4 (complex verb tense) | "The fluid drained from the tank." |

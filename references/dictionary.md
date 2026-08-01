@@ -2,7 +2,7 @@
 
 UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 
-## Approved Words (805)
+## Approved Words (806)
 
 * **ABRASIVE (adj)** — That can remove material by friction
 * **ABSORB (v)** - To take in or soak up
@@ -55,6 +55,7 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **CONTINUOUSLY (adv)** - Without stopping
 * **CORROSION (TN)** - The damage caused to metal by chemical action
 * **COVER (TN)** - A part that protects or hides something
+* **COVER (v)** - To put something over or on top of something else
 * **CRACK (TN)** - A thin break in a surface
 * **CURE (TV)** - To treat a material so that it becomes hard and stable
 * **CUT (v)** - To divide or shorten something with a sharp tool
@@ -294,6 +295,7 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **CHEMICAL (adj)** — Related to a chemical
 * **CIRCULAR (adj)** — That has the shape of a circle
 * **CLEAN (adj)** — That does not include dirt or unwanted material
+* **CLEAN (v)** - To remove dirt or unwanted material from something
 * **CLEAR (adj)** — Without blockage or interference; For other meanings, use:; TRANSPARENT (adj)
 * **CLEARANCE (n)** — The space between two objects that must be clear to make sure that they do not touch
 * **CLEARLY (adv)** — In a clear manner
@@ -538,6 +540,7 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **ONLY (adv)** — Exclusively
 * **ONTO (prep)** — To a position on or upon
 * **OPEN (adj)** — That lets something go in or out
+* **OPEN (v)** - To move something so that it is no longer closed
 * **OPENING (n)** — An aperture or hole in a surface
 * **OPERATION (n)** — That which occurs when something operates or is operated
 * **OPPOSITE (adj)** — 1. In the other direction; 2. Across from
@@ -606,6 +609,7 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **REMAINING (adj)** — That continues to stay
 * **REMOVAL (n)** — A procedure which removes an object
 * **REPAIR (n)** — The act of repairing or the result when something is repaired
+* **REPAIR (v)** — To bring something back to good condition
 * **REPORT (n)** — The information that is recorded about a subject or occurrence
 * **RESISTANT (adj)** — That will help to prevent something
 * **RESULT (n)** — Something that occurs when you do something

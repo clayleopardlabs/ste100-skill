@@ -1,0 +1,12 @@
+{
+  "test": "test-10",
+  "round": "2",
+  "start": "2026-08-01T07:58:38",
+  "outcome": "WALL_CLOCK",
+  "detail": "exceeded 900s",
+  "draft_lint": "0 errors, 3 warnings",
+  "draft_details": "0 errors, 0 warnings",
+  "draft_lines": 21,
+  "draft_hash": "2f42abe1cb965f97",
+  "end": "2026-08-01T08:13:39"
+}

@@ -17,7 +17,7 @@ This skill rewrites Non-STE text into compliant Simplified Technical English:
 - **Rewrite** - converts run-on, jargon-heavy, passive-voice text into one-command imperative steps, keeping every step and every technical detail
 - **Validate** - checks technical text against all 53 STE writing rules
 - **Verify** - the mechanical linter enforces the machine-checkable rules; nothing is left to the model's memory
-- **Check words** - answers word-level questions against the full controlled dictionary (805 approved + 1,323 unapproved words)
+- **Check words** - answers word-level questions against the full controlled dictionary (806 approved + 1,323 unapproved words)
 
 ## Usage Examples
 
@@ -232,7 +232,7 @@ ste100/
 ├── ste100-verify/
 │   └── SKILL.md                   # Verification-only skill - lints existing text rule by rule
 └── references/
-    ├── dictionary.md              # Full controlled dictionary (805 approved, 1323 unapproved words)
+    ├── dictionary.md              # Full controlled dictionary (806 approved, 1323 unapproved words)
     ├── lookup.py                  # Word lookup tool - queries the dictionary one word at a time
     ├── ste_check.py               # Mechanical linter - checks text against the machine-checkable rules
     ├── verb-tenses.md             # Approved/unapproved tenses, active vs passive, -ing rules
@@ -303,7 +303,7 @@ If any of these files is missing or moved, the assistant cannot perform complete
 
 | Type | Count |
 |------|-------|
-| **Approved words** | 805 (with parts of speech and approved meanings) |
+| **Approved words** | 806 (with parts of speech and approved meanings) |
 | **Unapproved words** | 1,323 (with approved alternatives) |
 
 Each approved word is restricted to its specific part of speech and meaning. Example entries show approved and unapproved usage.
@@ -355,7 +355,7 @@ This is the **complete** implementation of the STE specification. The [distilled
 | | Distilled (woosal1337) | This skill |
 |---|---|---|
 | Rules | Mechanical subset | All 53 rules, 9 sections |
-| Dictionary | None, links to the official standard | Full controlled dictionary (86 KB, 805 approved + 1,323 unapproved words) |
+| Dictionary | None, links to the official standard | Full controlled dictionary (86 KB, 806 approved + 1,323 unapproved words) |
 | Strongest at | Quick rewriting | Validation, word lookup, rewriting |
 | Install weight | Single small file | SKILL.md + 2 reference files |
 

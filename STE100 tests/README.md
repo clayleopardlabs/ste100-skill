@@ -12,11 +12,14 @@ Each `test-NN.md` paragraph is designed to contain an EXACT number of violations
 | test-02 | 2 | 2 | 0 | + one over-long sentence |
 | test-03 | 3 | 3 | 0 | + one semicolon |
 | test-04 | 4 | 4 | 0 | + one Latin abbreviation (e.g.) |
-| test-05 | 5 | 4 | 1 | + one -ing form (holding) |
-| test-06 | 6 | 4 | 2 | + one complex tense (has completed) |
-| test-07 | 7 | 4 | 3 | + one passive voice (is removed by) |
-| test-08 | 8 | 4 | 4 | + one noun cluster  -  one of EVERY kind |
-| test-09 | 16 | 8 | 8 | TWO violations of every kind |
+| test-05 | 5 | 4 | 2 | + one -ing form (holding) + while-join |
+| test-06 | 6 | 4 | 3 | + one complex tense (has completed) |
+| test-07 | 7 | 4 | 4 | + one passive voice (is removed by) |
+| test-08 | 8 | 4 | 5 | + one noun cluster  -  one of every kind |
+| test-09 | 16 | 8 | 10 | TWO violations of every kind |
+| test-10 | 24 | 12 | 15 | THREE violations of every kind |
+
+Note: the -ing violation sentences in tests 05-10 are built as "while holding/checking/draining" phrases, so each carries a Rule 3.7 while-join warning in addition to the Rule 3.5 -ing form. The counts above are the real linter counts; the design intent (1/2/3 of each kind) is unchanged - the required correction splits the sentence, fixing both rules at once.
 | test-10 | 24 | 12 | 12 | THREE violations of every kind |
 
 The 8 violation kinds map 1:1 to the linter's rule classes: unapproved word (1.1/1.6), sentence over 25 words (4.1/8.7), semicolon (8.1), Latin abbreviation (GR-6), -ing form (3.5), complex tense (3.2/3.4), passive voice (3.6), noun cluster (2.1).

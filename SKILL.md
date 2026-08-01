@@ -119,7 +119,7 @@ Synonym lookup first; consistent terminology; positive statements; consistent st
 
 | File | Contents |
 |------|----------|
-| `references/dictionary.md` | Full controlled dictionary — 805 approved words (UPPERCASE) and 1,323 unapproved words (lowercase). Do NOT read in full; use `lookup.py` |
+| `references/dictionary.md` | Full controlled dictionary — 806 approved words (UPPERCASE) and 1,323 unapproved words (lowercase). Do NOT read in full; use `lookup.py` |
 | `references/lookup.py` | Word lookup tool: `python references/lookup.py <word>` |
 | `references/ste_check.py` | Mechanical compliance linter: `python references/ste_check.py --allow port draft.md` |
 | `references/verb-tenses.md` | Approved verb tenses, active vs passive, -ing rules, sentence length limits, safety formatting |

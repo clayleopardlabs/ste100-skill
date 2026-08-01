@@ -1,0 +1,12 @@
+{
+  "test": "test-10",
+  "round": "1",
+  "start": "2026-08-01T07:55:22",
+  "outcome": "COMPLETED",
+  "detail": "process exited",
+  "draft_lint": "0 errors, 0 warnings",
+  "draft_details": "0 errors, 0 warnings",
+  "draft_lines": 26,
+  "draft_hash": "963323d747d68209",
+  "end": "2026-08-01T07:57:42"
+}

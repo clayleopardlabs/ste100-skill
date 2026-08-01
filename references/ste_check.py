@@ -84,6 +84,7 @@ ING_RE = re.compile(r"\b(\w+ing)\b", re.I)
 LATIN_ABBREV_RE = re.compile(r"\b(?:i\.e\.|e\.g\.|etc\.|viz\.)(?![A-Za-z])", re.I)
 AND_JOIN_RE = re.compile(r"\band\s+([a-z]+)\b", re.I)
 THEN_JOIN_RE = re.compile(r"\bthen\s+([a-z]+)\b", re.I)
+WHILE_JOIN_RE = re.compile(r"\bwhile\s+([a-z]+)\b", re.I)
 DANGLING_THIS_RE = re.compile(
     r"^\s*This\s+(is|will|can|does|was|has|had|must|should|may|shall)\b", re.I)
 WORD_RE = re.compile(r"[A-Za-z]+(?:[-'][A-Za-z]+)*")
@@ -186,6 +187,27 @@ def check_text(text, report, allow_set, report_unknown=False):
                         f in approved or f in unapproved for f in forms):
                     report.unknown.add(word.lower())
 
+    # --- noun-only words used as imperative verbs (Rule 1.2) ---
+    for lineno, line in enumerate(lines, 1):
+        for s in split_sentences(line):
+            words = WORD_RE.findall(s)
+            if len(words) < 2:
+                continue
+            first = normalize(words[0]).lower()
+            second = normalize(words[1]).lower()
+            if first in allow_set:
+                continue
+            if first in approved and "v" not in approved[first][0]:
+                if "conj" in approved[first][0] or "prep" in approved[first][0]:
+                    continue
+                if second in ("the", "a", "an", "this", "that", "these", "those"):
+                    report.error(
+                        "1.2", lineno,
+                        f"'{first.title()}' is approved only as a noun, not as an "
+                        f"imperative verb - use the approved verb (run lookup.py "
+                        f"<action> to find it)",
+                    )
+
     # --- -ing forms (Rule 3.5) ---
     for lineno, line in enumerate(lines, 1):
         for m in ING_RE.finditer(line):
@@ -267,6 +289,15 @@ def check_text(text, report, allow_set, report_unknown=False):
                         report.warning(
                             "3.7", lineno,
                             f"possible two actions joined by 'then' "
+                            f"(one action per sentence): '...{m.group(0)}...'",
+                        )
+                        break
+                for m in WHILE_JOIN_RE.finditer(sent):
+                    nxt = m.group(1).lower()
+                    if first_is_verb and nxt not in FUNCTION_WORDS:
+                        report.warning(
+                            "3.7", lineno,
+                            f"possible two actions joined by 'while' "
                             f"(one action per sentence): '...{m.group(0)}...'",
                         )
                         break
