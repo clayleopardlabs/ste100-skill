@@ -149,7 +149,7 @@ Add to `opencode.json`:
 
 ## Examples
 
-The examples below are instructional text. That is what ASD-STE100 was designed for: maintenance and operating procedures that a reader must follow exactly, with no room for misunderstanding. Both examples use strict mode.
+The examples below are instructional text. That is what ASD-STE100 was designed for: maintenance and operating procedures that a reader must follow exactly, with no room for misunderstanding.
 
 ### Example 1: A Maintenance Procedure
 
