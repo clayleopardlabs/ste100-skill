@@ -36,6 +36,7 @@ PROMPT = """Correct a test paragraph to comply with ASD-STE100 Simplified Techni
 2. Read the input: {TEST_PATH}
 3. Run the linter on the input and save output: python C:\\Users\\Omen\\.config\\opencode\\skills\\ste100\\references\\ste_check.py "{TEST_PATH}" > C:\\Users\\Omen\\AppData\\Local\\Temp\\opencode\\lint-original.txt 2>&1 ; then Get-Content -Raw C:\\Users\\Omen\\AppData\\Local\\Temp\\opencode\\lint-original.txt
 4. Write your corrected version to C:\\Users\\Omen\\AppData\\Local\\Temp\\opencode\\ste100-draft.md (overwrite it). Keep every action and every technical detail of the original (Rule 4.2). Split any sentence over 20 words. One action per sentence - no "and"/"then"/"while" joins. No -ing forms (use the same verb as an imperative: "while holding the valve" -> "Hold the valve."). No passives. No noun clusters over 3 words (keep the head noun and the sentence verb; use prepositions). For unapproved words run python C:\\Users\\Omen\\.config\\opencode\\skills\\ste100\\references\\lookup.py <word> and use the dictionary alternative exactly.
+   FORMAT: the corrected text MUST be a vertical list, one action per line, with the same number of lines as the original file (Rule 4.3/8.4: procedures use vertical lists; never merge steps into a paragraph).
 5. Re-lint the draft until the last output line reads exactly "0 errors, 0 warnings": python C:\\Users\\Omen\\.config\\opencode\\skills\\ste100\\references\\ste_check.py C:\\Users\\Omen\\AppData\\Local\\Temp\\opencode\\ste100-draft.md
 6. Run the detail check: python C:\\Users\\Omen\\.config\\opencode\\skills\\ste100\\references\\ste_check.py --details "{TEST_PATH}" C:\\Users\\Omen\\AppData\\Local\\Temp\\opencode\\ste100-draft.md - last line must read "0 errors, 0 warnings".
 7. When both checks pass, run: Get-FileHash C:\\Users\\Omen\\AppData\\Local\\Temp\\opencode\\ste100-draft.md ; Get-Content -Raw C:\\Users\\Omen\\AppData\\Local\\Temp\\opencode\\ste100-draft.md
@@ -145,6 +146,8 @@ def main():
               "outcome": "ERROR", "detail": ""}
 
     prompt = PROMPT.format(TEST_PATH=test_path)
+    if DRAFT.exists():
+        DRAFT.unlink()
     log = RUNS / f"{args.test}-round-{args.round}.log"
     with open(log, "w", encoding="utf-8") as f:
         f.write(f"=== supervisor run {args.round} ===" + "\n")
@@ -161,6 +164,7 @@ def main():
         env=env,
     )
     launched_ms = int(time.time() * 1000)
+    launch_ts = time.time()
     print(f"[supervisor] launched pid={proc.pid} title={title}", flush=True)
 
     con = db_connect()
@@ -215,6 +219,10 @@ def main():
         report["draft_lines"] = len(DRAFT.read_text(encoding="utf-8", errors="replace").splitlines())
         report["draft_hash"] = __import__("hashlib").sha256(
             DRAFT.read_bytes()).hexdigest()[:16]
+        report["draft_mtime"] = datetime.fromtimestamp(DRAFT.stat().st_mtime).isoformat(timespec="seconds")
+        if DRAFT.stat().st_mtime < launch_ts:
+            report["outcome"] = "NO_DRAFT_WRITTEN"
+            report["detail"] += " draft was not created by this run"
     else:
         report["draft_lines"] = 0
         report["draft_hash"] = ""

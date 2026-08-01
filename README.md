@@ -152,7 +152,7 @@ Prepare the patient:
 - Put the patient on their back.
 - Give the patient general anesthesia.
 - Clean the abdomen with antiseptic solution.
-- Cover the abdomen with sterile drapes.
+- Put sterile drapes on the abdomen.
 - Make a small incision in the lower right abdomen at McBurney's point.
 
 Access:
@@ -182,7 +182,7 @@ Close the wound:
 - Remove the CO2 gas from the abdomen.
 - Close the muscle layer with 0-Vicryl suture if the port site is more than 10 mm.
 - Close the skin with 3-0 Monocryl suture.
-- Cover the wound with a sterile bandage.
+- Put a sterile bandage on the wound.
 - Send the patient to the recovery room.
 
 What changed:

@@ -398,6 +398,15 @@ def check_details(original_path, corrected_path, report):
     original = Path(original_path).read_text(encoding="utf-8-sig", errors="replace")
     corrected = Path(corrected_path).read_text(encoding="utf-8-sig", errors="replace")
     corrected_norm = re.sub(r"[^a-z0-9°%]+", "", corrected.lower())
+    orig_lines = [l for l in original.splitlines() if l.strip()]
+    corr_lines = [l for l in corrected.splitlines() if l.strip()]
+    if corr_lines and len(corr_lines) < len(orig_lines):
+        report.error(
+            "4.3", 0,
+            f"corrected text has {len(corr_lines)} lines, original has "
+            f"{len(orig_lines)} - restore the vertical-list structure "
+            "(Rule 4.3: procedures use vertical lists; do not merge steps)",
+        )
     for detail in extract_details(original):
         keys = detail_keys(detail)
         if not any(k in corrected_norm for k in keys):

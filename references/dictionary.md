@@ -55,7 +55,6 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **CONTINUOUSLY (adv)** - Without stopping
 * **CORROSION (TN)** - The damage caused to metal by chemical action
 * **COVER (TN)** - A part that protects or hides something
-* **COVER (v)** - To put something over or on top of something else
 * **CRACK (TN)** - A thin break in a surface
 * **CURE (TV)** - To treat a material so that it becomes hard and stable
 * **CUT (v)** - To divide or shorten something with a sharp tool
