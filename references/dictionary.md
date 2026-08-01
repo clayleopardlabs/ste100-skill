@@ -2,7 +2,7 @@
 
 UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 
-## Approved Words (804)
+## Approved Words (805)
 
 * **ABRASIVE (adj)** — That can remove material by friction
 * **ABSORB (v)** - To take in or soak up
@@ -630,6 +630,7 @@ UPPERCASE = approved word. lowercase = unapproved word (use alternative).
 * **SERRATION (n)** — One or more notches or teeth as in a saw
 * **SERVICING (n)** — The steps necessary to prepare something for operation
 * **SET (n)** — A group of related items that you (can) use for the same purpose
+* **SET (v)** — To put a device or control in the position or condition that is necessary
 * **SHAPE (n)** — The contour of an object
 * **SHEET (n)** — A piece of material that is thin in relation to its length and width
 * **SHOCK (n)** — The sudden effect of energy on a person or object

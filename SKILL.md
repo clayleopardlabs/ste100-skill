@@ -69,7 +69,7 @@ Approved words only; technical names (20 categories) and technical verbs permitt
 Max 3 words in a cluster; hyphens to clarify; articles and "this/these" used correctly.
 
 ### Section 3: Verbs (3.1-3.7) → `rules/03-verbs.md`
-Approved tenses only (imperative, simple present/past/future, past participle as adjective); no perfect/progressive/complex forms; -ing only as one of 7 approved forms or in a technical name; active voice only in procedures; one action per sentence.
+Approved tenses only (imperative, simple present/past/future, past participle as adjective); no perfect/progressive/complex forms; -ing only as an approved -ing word or in a technical name; active voice only in procedures; one action per sentence.
 
 ### Section 4: Sentences (4.1-4.4) → `rules/04-sentences.md`
 One topic per sentence; max 20-25 words (procedural); never omit content for brevity; vertical lists for complex information; connectors.
@@ -106,7 +106,7 @@ Synonym lookup first; consistent terminology; positive statements; consistent st
 
 | File | Contents |
 |------|----------|
-| `references/dictionary.md` | Full controlled dictionary — 804 approved words (UPPERCASE) and 1,323 unapproved words (lowercase). Do NOT read in full; use `lookup.py` |
+| `references/dictionary.md` | Full controlled dictionary — 805 approved words (UPPERCASE) and 1,323 unapproved words (lowercase). Do NOT read in full; use `lookup.py` |
 | `references/lookup.py` | Word lookup tool: `python references/lookup.py <word>` |
 | `references/ste_check.py` | Mechanical compliance linter: `python references/ste_check.py --allow port draft.md` |
 | `references/verb-tenses.md` | Approved verb tenses, active vs passive, -ing rules, sentence length limits, safety formatting |

@@ -8,11 +8,15 @@ writing rules. Deterministic checks report as ERRORS; heuristic checks
 Usage:
     python ste_check.py FILE [FILE ...]
     python ste_check.py --allow port,clamp FILE
+    python ste_check.py --report-unknown FILE
     cat FILE | python ste_check.py -
 
 Options:
     --allow WORD[,WORD...]   extra technical names to suppress (e.g. --allow port)
     --strict                 also fail on WARNINGs (exit 2)
+    --report-unknown         also list words not in the dictionary (they are
+                             allowed only as technical names or technical
+                             verbs; review them in the Phase 5 judgment check)
 
 Exit code: 0 clean, 1 errors, 2 errors+strict warnings.
 
@@ -106,6 +110,7 @@ class Report:
     def __init__(self):
         self.errors = []
         self.warnings = []
+        self.unknown = set()
 
     def error(self, rule, line, message):
         self.errors.append((rule, line, message))
@@ -151,19 +156,30 @@ def count_words(text):
     return len(WORD_RE.findall(text))
 
 
-def check_text(text, report, allow_set):
+def check_text(text, report, allow_set, report_unknown=False):
     approved, unapproved = load_dictionary()
     lines = text.splitlines()
 
     # --- unapproved words (Rules 1.1, 1.6) ---
     for lineno, line in enumerate(lines, 1):
+        flagged = set()
         for word in WORD_RE.findall(line):
+            key = normalize(word).lower()
+            if key in flagged or singularize(key) in flagged:
+                continue
             alt = find_unapproved(word, approved, unapproved, allow_set)
             if alt:
+                flagged.add(key)
                 report.error(
                     "1.1/1.6", lineno,
-                    f"unapproved word: '{word}' - use {alt}",
+                    f"unapproved word: '{word}' - use {alt} (if this is a "
+                    "technical name per Rule 1.5, add it with --allow)",
                 )
+            elif report_unknown:
+                forms = [key, singularize(word)]
+                if key not in FUNCTION_WORDS and key not in NUMBERS and not any(
+                        f in approved or f in unapproved for f in forms):
+                    report.unknown.add(word.lower())
 
     # --- -ing forms (Rule 3.5) ---
     for lineno, line in enumerate(lines, 1):
@@ -172,7 +188,7 @@ def check_text(text, report, allow_set):
             if ing not in APPROVED_ING:
                 report.warning(
                     "3.5", lineno,
-                    f"'-ing' form '{m.group(1)}' is not one of the 7 approved "
+                    f"'-ing' form '{m.group(1)}' is not one of the approved "
                     "forms (lighting, opening, routing, servicing, mating, "
                     "missing, remaining, something, during); if it is part of "
                     "a technical name, that is permitted",
@@ -202,10 +218,19 @@ def check_text(text, report, allow_set):
                     f"future passive): '{sent[:80]}...'",
                 )
             if PASSIVE_RE.search(sent):
-                report.warning(
-                    "3.6", lineno,
-                    f"possible passive voice: '{sent[:80]}...'",
-                )
+                matches = PASSIVE_RE.finditer(sent)
+                shown = 0
+                for m in matches:
+                    span = sent[max(0, m.start() - 20):m.end() + 20]
+                    report.warning(
+                        "3.6", lineno,
+                        f"possible passive voice: '...{span.strip()}...'",
+                    )
+                    shown += 1
+                    if shown >= 3:
+                        break
+                if shown == 0:
+                    report.warning("3.6", lineno, "possible passive voice")
             if DANGLING_THIS_RE.search(sent):
                 report.warning(
                     "GR-1", lineno,
@@ -233,17 +258,19 @@ def check_text(text, report, allow_set):
         for sent in split_sentences(line):
             words = WORD_RE.findall(sent.lower())
             run = 0
-            for w in words:
+            for i, w in enumerate(words):
                 if w in FUNCTION_WORDS or w in NUMBERS or w.isdigit():
                     run = 0
                 else:
                     run += 1
                     if run == MAX_NOUN_CLUSTER + 1:
+                        start = max(0, i - MAX_NOUN_CLUSTER)
+                        cluster = " ".join(words[start:i + 1])
                         report.warning(
                             "2.1", lineno,
                             f"noun cluster longer than {MAX_NOUN_CLUSTER} "
-                            "words in a row; split it with articles, "
-                            f"hyphens, or prepositions: '{sent[:80]}...'",
+                            f"words in a row: '{cluster}'; split it with "
+                            "articles, hyphens, or prepositions",
                         )
                         break
 
@@ -288,9 +315,9 @@ def check_list(group, group_start, report):
             )
 
 
-def check_file(path, report, allow_set):
+def check_file(path, report, allow_set, report_unknown=False):
     text = Path(path).read_text(encoding="utf-8", errors="replace")
-    check_text(text, report, allow_set)
+    check_text(text, report, allow_set, report_unknown)
 
 
 def main(argv=None):
@@ -300,6 +327,7 @@ def main(argv=None):
         return 2
     allow_set = set()
     strict = False
+    report_unknown = False
     files = []
     i = 0
     while i < len(argv):
@@ -310,19 +338,27 @@ def main(argv=None):
         elif arg == "--strict":
             strict = True
             i += 1
+        elif arg == "--report-unknown":
+            report_unknown = True
+            i += 1
         else:
             files.append(arg)
             i += 1
     report = Report()
     for path in files:
         if path == "-":
-            check_text(sys.stdin.read(), report, allow_set)
+            check_text(sys.stdin.read(), report, allow_set, report_unknown)
         else:
-            check_file(path, report, allow_set)
+            check_file(path, report, allow_set, report_unknown)
     for rule, lineno, msg in report.errors:
         print(f"ERROR   [Rule {rule}] line {lineno}: {msg}")
     for rule, lineno, msg in report.warnings:
         print(f"WARNING [Rule {rule}] line {lineno}: {msg}")
+    if report_unknown:
+        print()
+        print("NOT IN DICTIONARY (technical-name candidates for Phase 5 review):")
+        for word in sorted(report.unknown):
+            print(f"  {word}")
     print()
     print(f"{len(report.errors)} errors, {len(report.warnings)} warnings")
     if report.errors:

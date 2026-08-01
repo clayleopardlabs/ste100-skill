@@ -24,6 +24,12 @@ If you cannot find it, tell the user the ste100 skill must be installed first.
 python <references>/ste_check.py <file>
 ```
 
+Options:
+
+- `--allow WORD[,WORD...]` — when an unapproved word is genuinely a technical name (Rule 1.5 categories), re-run with it allowed and say so in the report: `python <references>/ste_check.py --allow port,clamp <file>`
+- `--report-unknown` — additionally lists words that are not in the dictionary at all; each one must be justified as a technical name or technical verb (or replaced) in the final report
+- `--strict` — exit with failure when only WARNINGs remain
+
 Output has two levels:
 
 - **ERROR [Rule X.Y]** — deterministic violations: unapproved words, sentences over the limit, bad vertical lists (more than 6 items, items over 20 words or 2 sentences), semicolons, Latin abbreviations. These must ALL be fixed.
@@ -48,6 +54,17 @@ For each WARNING, read the matching section file for the rule before deciding:
 | noun cluster (2.1) | `<references>/rules/02-noun-clusters.md` |
 | dangling "this" (GR-1) | `<references>/rules/09-writing-practices.md` |
 | sentence length (4.1/8.7) | `<references>/rules/04-sentences.md` |
+
+For ERROR rules, consult the section files when an error needs context beyond the suggestion:
+
+| Error | Read |
+|-------|------|
+| unapproved word (1.1/1.6) | `<references>/rules/01-words.md` (technical name categories) |
+| sentence over limit (4.1/8.7) | `<references>/rules/04-sentences.md` |
+| list over 6 items / item too long (8.4) | `<references>/rules/08-punctuation.md` |
+| item with 3+ sentences (8.5) | `<references>/rules/08-punctuation.md` |
+| semicolon (8.1) | `<references>/rules/08-punctuation.md` |
+| Latin abbreviation (GR-6) | `<references>/rules/09-writing-practices.md` |
 
 Decision categories for a WARNING: (a) fix it, (b) justify it as a technical name (Rule 1.5), or (c) rephrase. State the decision per warning.
 
