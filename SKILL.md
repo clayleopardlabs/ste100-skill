@@ -59,6 +59,8 @@ It reports ERRORS (deterministic rule violations) and WARNINGs (heuristics that 
 
 **Phase 6 evidence (MANDATORY):** a report that claims "0 errors, 0 warnings" is only trustworthy if it is tied to the exact artifact. After the final lint, run `Get-FileHash <draft-file>` (or `sha256sum`) and include the hash, AND echo the file back with `Get-Content -Raw <draft-file>`, both in your report. The delivered text must be a character-for-character copy of that echoed file. If you rewrote or rephrased anything after the final lint, the test FAILS — re-run the whole Phase 6 loop on the new text instead. Never hand-edit the linted text in your report: copy it from the file.
 
+**TECHNICAL DETAIL GUARD (MANDATORY, Rule 4.2).** The corrected text must preserve EVERY technical detail of the original: numbers with units (12-15 mmHg, 10 mm, 40 °C), ranges (3-0), acronyms (CO2, DC), brand or material names (Vicryl, Monocryl), capitalized names (McBurney's point, Kelly clamp, Veress needle), hyphenated compound terms (0-Vicryl, low-speed), and conditions ("if the port site is more than 10 mm"). Never delete, generalize, or round a technical detail to make the text shorter. Mechanical check: `python ste_check.py --details <original-file> <draft-file>` — every flagged line is a Rule 4.2 violation; restore the exact detail and re-run until it reports "0 errors, 0 warnings". STE simplifies phrasing, never information (Rule 4.2).
+
 ## Word Lookup (not dictionary reads)
 
 Do NOT read `references/dictionary.md` into context (86 KB). Query it word by word:

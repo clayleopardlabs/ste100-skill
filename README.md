@@ -27,7 +27,7 @@ This is the **complete** implementation of the STE specification. The [distilled
 
 The distilled version is the lighter fit when you only want everyday rewriting instructions. This skill is the reference implementation: it can validate a document against all 53 rules and answer word-level questions such as "Is 'utilize' an approved STE word?" against the controlled dictionary. I have a product coming out soon and after the youtube video introduced me to the concept of STE, It made me want to have the instructional documents adhere to the STE standard. Not because of regulatory reasons, I just thought it was a neat idea and effective for my customers.
 
-The benchmark below shows both clear the anti-slop test at essentially the same level. The difference between the two is that mine isn't just to make AI sound less AI, it should hopefully actually make text stick to the rules of the standard.
+The benchmark below shows both clear the anti-slop test at essentially the same level. The difference is that this skill makes text stick to the rules of the standard, not just sound less like AI.
 
 ## Benchmark: STE100 vs. the Distilled "Cure for AI Slop" Skill
 
@@ -42,7 +42,7 @@ Head-to-head test against the distilled STE skill from [woosal1337's "The cure f
 | **This skill (ste100)** | 1.35 | 0.00 | 0.00 | 0.00 | 0.74 | 0.00 | **0.35** | **−95.8%** |
 | Feynman skill (with em-dash rule) | 2.34 | 2.41 | 2.31 | 1.59 | 1.78 | 2.19 | 2.10 | −74.5% |
 
-**Honest caveats:** raw violation counts tied 3-3; the per-100-words margin comes from word-count normalization, not fewer violations. Both STE skills converge to near-zero because the linter is the machine-checkable subset of STE: a distilled skill and a dictionary-backed skill both clear it. n=6, single model, heuristic linter: directional, not proof.
+**Caveats:** raw violation counts tied 3-3; the per-100-words margin comes from word-count normalization, not fewer violations. Both STE skills converge to near-zero because the linter is the machine-checkable subset of STE: a distilled skill and a dictionary-backed skill both clear it. n=6, single model, heuristic linter: directional, not proof.
 
 ## Skill Contents
 
@@ -70,19 +70,20 @@ ste100/
 
 The agent loads only the rule index from SKILL.md and reads the per-section deep dives on demand, so it never needs to hold all 53 rules in context. Word checks run through `lookup.py` instead of reading the 86 KB dictionary, and the `ste_check.py` linter handles the mechanical rules in one pass.
 
-### Mechanical verification (why the agent can stop guessing)
+### Mechanical verification
 
 The skill enforces a mandatory write-then-verify loop:
 
 1. Write the draft
 2. Run the linter: `python references/ste_check.py draft.md`
-3. Fix one rule at a time — query `python references/lookup.py <word>` for alternatives, or justify a word as a technical name with `--allow`
+3. Fix one rule at a time  -  query `python references/lookup.py <word>` for alternatives, or justify a word as a technical name with `--allow`
 4. Re-lint until 0 errors AND 0 warnings, then judge the remaining rules against the section files
-5. Phase 6 guard: the exact artifact you publish must be the artifact you linted (hash + verbatim echo in the report), and it must have at least as many lines as the original — dropping content is a violation (Rule 4.2)
+5. Run the technical-detail check: `python references/ste_check.py --details original.md corrected.md` - every number, unit, range, acronym, brand name, and condition from the original must survive in the corrected text (Rule 4.2)
+6. Phase 6 guard: the exact artifact you publish must be the artifact you linted (hash + verbatim echo in the report), and it must have at least as many lines as the original  -  dropping content is a violation (Rule 4.2)
 
-The fix loop is bounded (watchdog): at most 6 linter runs; if two consecutive lint outputs are identical, you are stuck — change the FIX, not the file; after 6 runs, deliver the best draft with remaining violations reported. Never loop.
+The fix loop is bounded (watchdog): at most 6 linter runs; if two consecutive lint outputs are identical, you are stuck  -  change the FIX, not the file; after 6 runs, deliver the best draft with remaining violations reported. Never loop.
 
-Example — the linter catches what a reviewer misses:
+Example:
 
 ```bash
 $ python references/ste_check.py before.md
@@ -102,9 +103,9 @@ Warnings are heuristics (-ing forms, passive voice, noun clusters, complex tense
 
 ### How the skill was refined: the 10-paragraph test corpus
 
-The skill is verified against a graded regression corpus in [`STE100 tests/`](STE100%20tests/README.md): 10 test paragraphs with escalating violation counts — test-01 has exactly 1 violation, test-02 has 2, and so on up to test-08 which violates one of EVERY kind, then test-09 (2 violations of every kind) and test-10 (3 of every kind). Each has a rubric identifying every violation with its rule citation and required correction. A fresh subagent (cold context) must identify and fix every violation in each paragraph; the grade is perfect only if all violations are found, all are corrected without introducing new ones, and the final text lints clean.
+The skill is verified against a graded regression corpus in [`STE100 tests/`](STE100%20tests/README.md): 10 test paragraphs with escalating violation counts - test-01 has exactly 1 violation, test-02 has 2, and so on up to test-08 which violates one of each kind, then test-09 (2 violations of every kind) and test-10 (3 of every kind). Each has a rubric identifying every violation with its rule citation and required correction. A fresh subagent (cold context) must identify and fix every violation in each paragraph; the grade is perfect only if all violations are found, all are corrected without introducing new ones, and the final text lints clean.
 
-**Deliberately small model, deliberately hard test.** Refinement was run on purpose with a very small model — Qwen3.5-9B (Defiant Fable) served locally through LM Studio — rather than a frontier model. The point is confidence: if a 9B model can pass the corpus, users with any capable model can trust the skill to work. All 10 tests pass against it. One honest caveat about the testing conditions: the model's 100k context window had ~44k already consumed by the opencode harness (system prompt, tool definitions, session state), so the tests effectively ran in roughly 56k of context. The corpus and skill were refined over about 4.5 hours of iterative testing: ~2 hours of subagent grading runs (each failure → skill modification → fresh retest), plus corpus construction, rubric writing, and fixing the 18 defects below.
+Refinement deliberately used a very small model - Qwen3.5-9B (Defiant Fable), served locally through LM Studio - rather than a frontier model, so passing the corpus with a 9B model is evidence the skill works with any capable model. All 10 tests pass against it. The tests ran in about 56k of context: the model's 100k window had ~44k already consumed by the opencode harness (system prompt, tool definitions, session state). The corpus and skill were refined over about 4.5 hours: ~2 hours of subagent grading runs (each failure → skill modification → fresh retest), plus corpus construction, rubric writing, and fixing the 18 defects below.
 
 The loop: on any non-perfect score, the skill is modified so that specific mistake cannot recur, then the same paragraph is re-tested. The 18 defects this process caught (each now prevented by the skill):
 
@@ -113,16 +114,16 @@ The loop: on any non-perfect score, the skill is modified so that specific mista
 | Agent reported a fabricated 0/0 lint for text that still had a violation | Phase 6: final artifact is linted verbatim (hash + echo evidence); never report an un-run lint |
 | Agent never counted words, missed an over-25-word sentence | Phase 1 mandates counting every sentence's words; 21-25 words is a warning that must also be fixed |
 | Agent cited invented rule numbers | Rule citations must be copied from the linter output exactly as printed |
-| "Hold the wrench with the left hand and keep the valve closed" — two actions invisible to the linter | Mechanical Rule 3.7 check: command + "and"/"then" + content word = two-action join warning |
+| "Hold the wrench with the left hand and keep the valve closed"  -  two actions invisible to the linter | Mechanical Rule 3.7 check: command + "and"/"then" + content word = two-action join warning |
 | Agent rewrote "holding" as a different verb | -ing fixes must use the SAME verb; lookup-verify the base verb is approved as a verb (CHECK is noun-only → EXAMINE) |
 | Agent stopped at "0 errors" with warnings remaining | Phase 6 requires the output line to read exactly "0 errors, 0 warnings" |
 | "etc." → "that is a rag" (wrong meaning) | Latin abbreviations map to exactly one replacement: e.g.→"for example", i.e.→"that is", etc.→"and so on" |
-| "hydraulic oil of the filter" — cluster split inverted the meaning | Cluster splits keep every word, keep the head noun, keep the sentence verb; only add articles/hyphens/prepositions |
-| Agent looped 55 minutes without running the linter | Watchdog: 20-minute cap, 25 tool-call cap, "STOPPED AT CAP" deliver-don't-loop |
+| "hydraulic oil of the filter"  -  cluster split inverted the meaning | Cluster splits keep every word, keep the head noun, keep the sentence verb; only add articles/hyphens/prepositions |
+| Agent looped 55 minutes without running the linter | Watchdog: 20-minute cap, 25 tool-call cap, "STOPPED AT CAP" - deliver the best draft instead of looping |
 | Agent wrote report text into the draft and deleted sentences | Line-count guard: draft must have ≥ the original's line count, containing only corrected text |
 | "LOOSING" (uppercase -ing) bypassed the linter | -ing regex compiled case-insensitive |
 | The linter's own suggestion "and so on" was flagged ("so") | Multi-word exception for "and so on" |
-| Agent invented "Reattach" for Fix (dictionary says REPAIR) | Every replacement word must be lookup-verified — never invent words not in the dictionary |
+| Agent invented "Reattach" for Fix (dictionary says REPAIR) | Every replacement word must be lookup-verified  -  never invent words not in the dictionary |
 
 Full details, all 18 defects, and the complete protocol are in [`STE100 tests/README.md`](STE100%20tests/README.md).
 
@@ -254,10 +255,12 @@ After (strict STE):
 > **WARNING:** Make sure that the switch is OFF before you open the cover.
 
 Remove the used filter:
+- Disconnect the primary supply.
 - Set the switch to OFF.
 - Open the cover.
 - Remove the filter.
-- Examine the filter.
+- Examine the housing.
+- Clean the housing.
 
 Install the new filter:
 - Install the new filter.
@@ -268,10 +271,12 @@ What changed:
 
 - "ensure" -> MAKE SURE, "prior to" -> BEFORE, "inspect" -> EXAMINE, "commence" and "locate" are not approved words
 - Passive voice became active voice: "it is essential that the filter element be replaced" -> "Remove the filter"
-- One instruction per step; the longest step is 12 words, under the 20-word limit
+- One instruction per step; the longest step is 10 words, under the 20-word limit
 - Steps are grouped into two vertical lists of at most 6 items, with bullets (Rules 4.3, 8.4, 8.5)
 - The WARNING comes first and states the condition before the action
 - "optimum", "longevity", "peak efficiency" are marketing claims, not instructions; they were removed
+- Every step is preserved, including the technical details: "disconnected from the main power supply" -> "Disconnect the primary supply", "inspect the housing for debris and clean it thoroughly" -> "Examine the housing" + "Clean the housing"
+- Verified with `ste_check.py --allow housing` (housing is a technical name): 0 errors, 0 warnings; `--details` confirms no technical detail was dropped
 
 ### Example 2: An Operating Procedure
 
@@ -281,20 +286,30 @@ Before:
 
 After:
 
-> **WARNING:** Do not open the cover when the pump is ON.
->
-> - Set the switch to ON.
-> - Examine the pressure.
-> - Adjust the pressure.
-> - Set the switch to OFF.
+> **WARNING:** Make sure that all safety procedures are complete before you operate the pump.
+
+Prepare the pump:
+- Make sure that all connections are tight.
+- Make sure that the inlet valve is OPEN.
+
+Operate the pump:
+- Set the switch to ON.
+- Examine the pressure.
+
+If the pressure is too high:
+- Stop the pump.
+- Read the troubleshooting section of the manual.
 
 What changed:
 
 - "commence", "activate", "depress", "monitor", "detect", "cease" are not approved words
 - "When you are ready" and "please ensure that" are not instructions; they were removed
-- "verify that all connections are secure" became a step you can follow: "Examine the pressure"
-- The condition "if any anomalies are detected" became a WARNING stated before the steps
-- Each step is one command in a vertical list of 4 items (Rules 4.3, 8.4, 8.5); the longest is 10 words, under the 20-word limit
+- "verify that all connections are secure" -> "Make sure that all connections are tight"
+- "verify that the inlet valve is in the open position" -> "Make sure that the inlet valve is OPEN"
+- The condition "if any anomalies are detected, immediately cease operations" -> the conditional list "If the pressure is too high: Stop the pump"
+- "consult the troubleshooting section" -> "Read the troubleshooting section of the manual"
+- Each step is one command in a vertical list of at most 6 items (Rules 4.3, 8.4, 8.5); the longest is 10 words, under the 20-word limit
+- Verified with `ste_check.py`: 0 errors, 0 warnings; `--details` confirms no technical detail was dropped
 
 ### Example 3: A Surgical Procedure
 
@@ -315,10 +330,10 @@ Prepare the patient:
 
 Access:
 - Put the Veress needle at the umbilicus.
-- Fill the abdomen with carbon dioxide gas.
+- Fill the abdomen with CO2 gas to a pressure of 12 to 15 mmHg.
 - Wait until the abdominal wall rises.
-- Put the camera port at the umbilicus.
-- Put two instrument ports in the lower abdomen.
+- Put the 10 mm camera port at the umbilicus.
+- Put two 5 mm ports in the left lower quadrant and the suprapubic region.
 
 Find the appendix:
 - Look at the abdominal organs on the monitor.
@@ -326,33 +341,35 @@ Find the appendix:
 - Hold the appendix with the forceps.
 - Pull the appendix up.
 - Cut the mesoappendix with the cautery tool.
+- Attach the blood vessels in the mesoappendix.
 
 Remove the appendix:
-- Attach the blood vessels in the mesoappendix.
-- Attach the lower part of the appendix twice with suture loops.
+- Attach the lower part of the appendix twice with Vicryl loops.
 - Make the loops 5 mm from the cecum.
-- Cut the appendix between the two loops.
-- Remove the appendix through the camera port.
+- Crush the appendix with a Kelly clamp.
+- Cut the appendix with scissors between the two loops.
+- Remove the appendix through the 10 mm camera port.
 
 Close the wound:
 - Examine the area for blood.
-- Remove the gas from the abdomen.
-- Close the muscle layer with suture.
-- Close the skin with suture or staples.
+- Remove the CO2 gas from the abdomen.
+- Close the muscle layer with 0-Vicryl suture if the port site is more than 10 mm.
+- Close the skin with 3-0 Monocryl suture.
 - Cover the wound with a sterile bandage.
 - Send the patient to the recovery room.
 
 What changed:
 
-- A 120-word run-on paragraph became 26 one-command steps, each a single complete action
-- The steps are grouped into 5 vertical lists of at most 6 items, as the spec requires (Rules 4.3, 8.4, 8.5)
+- A 120-word run-on paragraph became 27 one-command steps, each a single complete action
+- The steps are grouped into 6 vertical lists of at most 6 items, as the spec requires (Rules 4.3, 8.4, 8.5)
 - Passive voice became imperative commands: "it is grasped with atraumatic forceps" -> "Hold the appendix with the forceps"
-- Jargon was replaced with plain wording: "pneumoperitoneum" -> "carbon dioxide gas", "hemostasis is confirmed" -> "Examine the area for blood"
+- Jargon was replaced with plain wording: "pneumoperitoneum" -> "CO2 gas", "hemostasis is confirmed" -> "Examine the area for blood"
 - Unapproved dictionary words were replaced with approved ones: INSERT -> PUT, GRASP -> HOLD, TIE -> ATTACH, JOIN -> ATTACH, UPWARD -> UP, LOCATE -> FIND
 - "port" is not an approved word, but it is the standard name for the part in this procedure - it is kept as a technical name and passed to the linter with `--allow port`
 - Ambiguous pronouns became repeated nouns: "it", "the specimen" -> "the appendix" every time
 - The WARNING comes first and states who may do the operation (Rule 7.1)
-- Every step from the original is preserved - STE simplifies the phrasing, never the content (Rule 4.2)
+- Every step from the original is preserved, including every technical detail: "12-15 mmHg" -> "12 to 15 mmHg", "10 mm trocar" -> "10 mm camera port", "two additional 5 mm ports" -> "two 5 mm ports", "Vicryl endoloops" -> "Vicryl loops", "crushed with a Kelly clamp" -> "Crush the appendix with a Kelly clamp", "0-Vicryl if the port site is greater than 10 mm" -> "0-Vicryl suture if the port site is more than 10 mm", "subcuticular 3-0 Monocryl" -> "3-0 Monocryl suture"
+- Verified with `ste_check.py --allow port`: 0 errors, 0 warnings; `--details` confirms no technical detail was dropped
 
 ## About ASD-STE100
 

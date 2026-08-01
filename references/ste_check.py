@@ -190,14 +190,21 @@ def check_text(text, report, allow_set, report_unknown=False):
     for lineno, line in enumerate(lines, 1):
         for m in ING_RE.finditer(line):
             ing = m.group(1).lower()
-            if ing not in APPROVED_ING:
-                report.warning(
-                    "3.5", lineno,
-                    f"'-ing' form '{m.group(1)}' is not one of the approved "
-                    "forms (lighting, opening, routing, servicing, mating, "
-                    "missing, remaining, something, during); if it is part of "
-                    "a technical name, that is permitted",
-                )
+            if ing in APPROVED_ING:
+                continue
+            if ing in approved:
+                continue
+            if ing in unapproved and "TN" in unapproved[ing][1].upper():
+                continue
+            if ing in allow_set:
+                continue
+            report.warning(
+                "3.5", lineno,
+                f"'-ing' form '{m.group(1)}' is not one of the approved "
+                "forms (lighting, opening, routing, servicing, mating, "
+                "missing, remaining, something, during); if it is part of "
+                "a technical name, that is permitted",
+            )
 
     # --- sentence checks (Rules 4.1, 8.7, 3.2, 3.4, 3.6, GR-1) ---
     for lineno, line in enumerate(lines, 1):
@@ -319,6 +326,57 @@ def check_text(text, report, allow_set, report_unknown=False):
     check_list(group, group_start, report)
 
 
+DETAIL_RE = [
+    re.compile(r"\d+(?:\.\d+)?\s*(?:mm\s*Hg|kPa|MPa|psi|°\s*[CF]|mm|cm|ml|mg|kg|g\b|m\b|s\b|min\b|h\b|V\b|A\b|W\b|Hz|%|kN\b|N\b)", re.I),
+    re.compile(r"\b\d+(?:[.-]\d+)+\b"),
+    re.compile(r"\b[A-Z]{2,}\d?\b"),
+    re.compile(r"\b[A-Z][a-z]+(?:['’][A-Za-z]+)?\b"),
+    re.compile(r"\b\w+-\w+\b"),
+]
+CAP_START = re.compile(r"(?:^|\.\s+)[A-Z][a-z]+")
+
+
+def extract_details(text):
+    details = []
+    seen = set()
+    for pattern in DETAIL_RE:
+        for m in pattern.finditer(text):
+            detail = m.group(0).strip()
+            if not detail:
+                continue
+            if pattern is DETAIL_RE[3]:
+                prefix = text[max(0, m.start() - 2):m.start()]
+                if m.start() == 0 or prefix.endswith((". ", ".\n", ".\r", "? ", "! ")):
+                    continue
+            key = re.sub(r"[^a-z0-9°%]+", "", detail.lower())
+            if key and key not in seen:
+                seen.add(key)
+                details.append(detail)
+    return details
+
+
+def detail_keys(detail):
+    keys = {re.sub(r"[^a-z0-9°%]+", "", detail.lower())}
+    if re.search(r"\d+-\d+", detail):
+        keys.add(re.sub(r"[^a-z0-9°%]+", "", re.sub(r"(\d+)-(\d+)", r"\1to\2", detail.lower())))
+    keys.discard("")
+    return keys
+
+
+def check_details(original_path, corrected_path, report):
+    original = Path(original_path).read_text(encoding="utf-8-sig", errors="replace")
+    corrected = Path(corrected_path).read_text(encoding="utf-8-sig", errors="replace")
+    corrected_norm = re.sub(r"[^a-z0-9°%]+", "", corrected.lower())
+    for detail in extract_details(original):
+        keys = detail_keys(detail)
+        if not any(k in corrected_norm for k in keys):
+            report.error(
+                "4.2", 0,
+                f"technical detail removed: '{detail}' - restore it "
+                "(Rule 4.2: simplify the phrasing, never the content)",
+            )
+
+
 def check_list(group, group_start, report):
     if not group:
         return
@@ -355,6 +413,7 @@ def main(argv=None):
     allow_set = set()
     strict = False
     report_unknown = False
+    details_pair = None
     files = []
     i = 0
     while i < len(argv):
@@ -368,6 +427,9 @@ def main(argv=None):
         elif arg == "--report-unknown":
             report_unknown = True
             i += 1
+        elif arg == "--details" and i + 2 < len(argv):
+            details_pair = (argv[i + 1], argv[i + 2])
+            i += 3
         elif arg in ("-h", "--help"):
             print(__doc__)
             return 2
@@ -375,7 +437,9 @@ def main(argv=None):
             files.append(arg)
             i += 1
     report = Report()
-    if files:
+    if details_pair:
+        check_details(details_pair[0], details_pair[1], report)
+    elif files:
         for path in files:
             if path == "-":
                 check_text(sys.stdin.read(), report, allow_set, report_unknown)
