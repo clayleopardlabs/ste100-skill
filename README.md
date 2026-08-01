@@ -216,7 +216,7 @@ The examples below are instructional text. That is what ASD-STE100 was designed 
 
 ### Example 1: A Maintenance Procedure
 
-Before (typical AI slop):
+Before:
 
 > To ensure the optimum performance and longevity of your filtration system, it is essential that the filter element be replaced on a regular basis. Prior to commencing this procedure, ensure that the system is completely deactivated and disconnected from the main power supply. Then carefully remove the access cover, taking care not to damage the sealing surface. Once the cover has been removed, locate the old filter element and remove it from its housing. Prior to installing the new filter, inspect the housing for debris and clean it thoroughly. Finally, reinstall the access cover and reactivate the system, and your system will operate at peak efficiency once more.
 
@@ -246,11 +246,11 @@ What changed:
 
 ### Example 2: An Operating Procedure
 
-Before (typical AI slop):
+Before:
 
 > To commence operations, please ensure that all safety protocols have been reviewed and acknowledged. Prior to activating the pump, verify that all connections are secure and that the inlet valve is in the open position. When you are ready, proceed to power on the system by depressing the start button. During operation, it is critical to continuously monitor the pressure gauge, and if any anomalies are detected, immediately cease operations and consult the troubleshooting section of this manual.
 
-After (strict STE):
+After:
 
 > **WARNING:** Do not open the cover when the pump is ON.
 >
@@ -269,11 +269,11 @@ What changed:
 
 ### Example 3: A Surgical Procedure
 
-Before (typical AI slop):
+Before:
 
 > The patient is positioned supine and general anesthesia is administered, after which the abdomen is prepped and draped in the usual sterile fashion; a pneumoperitoneum is then established via Veress needle insertion at the umbilicus with CO2 insufflation to approximately 12-15 mmHg, and once adequate working space has been achieved, a 10 mm trocar is introduced for the camera while two additional 5 mm ports are placed in the left lower quadrant and suprapubic region under direct visualization; following abdominal exploration, the appendix is identified at its origin from the cecum by tracing the taeniae coli, and it is grasped with atraumatic forceps and retracted superiorly, after which the mesoappendix is divided with electrocautery and the appendicular artery is clipped; the base is then doubly ligated with Vicryl endoloops approximately 5 mm from the cecal wall, crushed with a Kelly clamp, and transected with scissors, with the specimen removed through the 10 mm port; finally, hemostasis is confirmed under direct vision, the CO2 is evacuated, and the fascia is closed with interrupted 0-Vicryl if the port site is greater than 10 mm, followed by skin closure with subcuticular 3-0 Monocryl and sterile dressings, and the patient is monitored in recovery.
 
-After (strict STE):
+After:
 
 > **WARNING:** Do this operation only in a room for surgery. If you are not a surgeon, do not do this operation.
 
