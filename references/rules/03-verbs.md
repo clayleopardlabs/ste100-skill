@@ -26,6 +26,9 @@
 
 **Rule 3.5 — the -ing check:** A word ending in "-ing" is almost always a violation unless it is one of the approved -ing words (lighting, opening, routing, servicing, mating, missing, remaining, something, during) or part of a technical name ("the operating room", "the landing gear"). The linter flags these as WARNINGs — decide each one deliberately.
 
+**Fixing an -ing form (Rule 3.5):** replace it with the SAME verb in the imperative. "holding" -> "Hold". NEVER substitute a different verb for the action (changing "holding the valve" into "keep pressure on the valve" is a meaning change, forbidden by Rule 4.2). Example: "Hold the wrench with the left hand while holding the valve." -> "Hold the wrench with the left hand. Hold the valve."
+IMPORTANT — before using the base verb of an -ing form, check with lookup.py that it is approved AS A VERB (part of speech contains "(v)"). Some -ing forms come from nouns-only words: "checking" -> CHECK is approved only as a noun — the approved verb is EXAMINE. So "while checking the fluid level" -> "Examine the fluid level." (use EXAMINE, never "Check the fluid level"). When in doubt, run lookup.py on the base verb.
+
 **Rule 3.7 — one action per sentence:** "Remove the cover and disconnect the cable." -> two sentences. Split: "Remove the cover." / "Disconnect the cable."
 
 **How to fix passive voice:** find the actor, make it the subject, use the plain verb.

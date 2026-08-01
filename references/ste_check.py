@@ -9,7 +9,8 @@ Usage:
     python ste_check.py FILE [FILE ...]
     python ste_check.py --allow port,clamp FILE
     python ste_check.py --report-unknown FILE
-    cat FILE | python ste_check.py -
+    cat FILE | python ste_check.py          (reads text from stdin)
+    cat FILE | python ste_check.py -        (same)
 
 Options:
     --allow WORD[,WORD...]   extra technical names to suppress (e.g. --allow port)
@@ -79,8 +80,10 @@ PASSIVE_RE = re.compile(
     r"\b(is|are|was|were|be|been|being)\s+(applied|adjusted|closed|removed|"
     r"installed|opened|set|made|done|taken|given|put|secured|located|"
     r"identified|found|performed|completed|used|checked|examined)\b", re.I)
-ING_RE = re.compile(r"\b(\w+ing)\b")
-LATIN_ABBREV_RE = re.compile(r"\b(?:i\.e\.|e\.g\.|etc\.|viz\.)\b", re.I)
+ING_RE = re.compile(r"\b(\w+ing)\b", re.I)
+LATIN_ABBREV_RE = re.compile(r"\b(?:i\.e\.|e\.g\.|etc\.|viz\.)(?![A-Za-z])", re.I)
+AND_JOIN_RE = re.compile(r"\band\s+([a-z]+)\b", re.I)
+THEN_JOIN_RE = re.compile(r"\bthen\s+([a-z]+)\b", re.I)
 DANGLING_THIS_RE = re.compile(
     r"^\s*This\s+(is|will|can|does|was|has|had|must|should|may|shall)\b", re.I)
 WORD_RE = re.compile(r"[A-Za-z]+(?:[-'][A-Za-z]+)*")
@@ -167,6 +170,8 @@ def check_text(text, report, allow_set, report_unknown=False):
             key = normalize(word).lower()
             if key in flagged or singularize(key) in flagged:
                 continue
+            if key == "so" and re.search(r"\band\s+so\s+on\b", line, re.I):
+                continue
             alt = find_unapproved(word, approved, unapproved, allow_set)
             if alt:
                 flagged.add(key)
@@ -237,6 +242,27 @@ def check_text(text, report, allow_set, report_unknown=False):
                     "sentence starts with dangling 'This' (must be followed "
                     f"by a noun): '{sent[:80]}...'",
                 )
+            first = next(iter(WORD_RE.findall(sent.lower())), "")
+            first_is_verb = first in approved and "v" in approved[first][0]
+            if n <= MAX_SENTENCE_WORDS and n > 0:
+                for m in AND_JOIN_RE.finditer(sent):
+                    nxt = m.group(1).lower()
+                    if first_is_verb and nxt not in FUNCTION_WORDS:
+                        report.warning(
+                            "3.7", lineno,
+                            f"possible two actions joined by 'and' "
+                            f"(one action per sentence): '...{m.group(0)}...'",
+                        )
+                        break
+                for m in THEN_JOIN_RE.finditer(sent):
+                    nxt = m.group(1).lower()
+                    if first_is_verb and nxt not in FUNCTION_WORDS:
+                        report.warning(
+                            "3.7", lineno,
+                            f"possible two actions joined by 'then' "
+                            f"(one action per sentence): '...{m.group(0)}...'",
+                        )
+                        break
 
     # --- punctuation (Rules 8.1, GR-6) ---
     for lineno, line in enumerate(lines, 1):
@@ -247,10 +273,14 @@ def check_text(text, report, allow_set, report_unknown=False):
                 "permitted only to separate items in a complex vertical list)",
             )
         for m in LATIN_ABBREV_RE.finditer(line):
+            abbr = m.group(0).lower().rstrip(".")
+            alt = {"e.g.": "'for example'", "i.e.": "'that is'",
+                   "etc.": "'and so on'", "viz.": "'namely'"}.get(
+                m.group(0).lower(), "'that is', 'for example', or 'and so on'")
             report.error(
                 "GR-6", lineno,
-                f"Latin abbreviation '{m.group(0)}' - use 'that is', 'for "
-                "example', or 'and so on'",
+                f"Latin abbreviation '{m.group(0)}' - replace it with the "
+                f"matching phrase {alt} (only that one matches its meaning)",
             )
 
     # --- noun clusters (Rule 2.1) ---
@@ -316,15 +346,12 @@ def check_list(group, group_start, report):
 
 
 def check_file(path, report, allow_set, report_unknown=False):
-    text = Path(path).read_text(encoding="utf-8", errors="replace")
+    text = Path(path).read_text(encoding="utf-8-sig", errors="replace")
     check_text(text, report, allow_set, report_unknown)
 
 
 def main(argv=None):
     argv = argv if argv is not None else sys.argv[1:]
-    if not argv or "-h" in argv or "--help" in argv:
-        print(__doc__)
-        return 2
     allow_set = set()
     strict = False
     report_unknown = False
@@ -341,15 +368,24 @@ def main(argv=None):
         elif arg == "--report-unknown":
             report_unknown = True
             i += 1
+        elif arg in ("-h", "--help"):
+            print(__doc__)
+            return 2
         else:
             files.append(arg)
             i += 1
     report = Report()
-    for path in files:
-        if path == "-":
-            check_text(sys.stdin.read(), report, allow_set, report_unknown)
-        else:
-            check_file(path, report, allow_set, report_unknown)
+    if files:
+        for path in files:
+            if path == "-":
+                check_text(sys.stdin.read(), report, allow_set, report_unknown)
+            else:
+                check_file(path, report, allow_set, report_unknown)
+    elif not sys.stdin.isatty():
+        check_text(sys.stdin.read(), report, allow_set, report_unknown)
+    else:
+        print(__doc__)
+        return 2
     for rule, lineno, msg in report.errors:
         print(f"ERROR   [Rule {rule}] line {lineno}: {msg}")
     for rule, lineno, msg in report.warnings:

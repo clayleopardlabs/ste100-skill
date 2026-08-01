@@ -17,6 +17,15 @@
 
 - "the flight control system actuator" -> "the actuator of the flight control system" (or "the flight-control-system actuator" as a hyphenated TN)
 
+**Meaning preservation when splitting a cluster (Rule 4.2):** keep EVERY word of the cluster, and keep the head noun (the last word) as the thing being acted on. Splitting must not invert the relationship or drop words:
+
+- "high pressure hydraulic oil filter" -> "the filter of the high-pressure hydraulic oil" (the FILTER is examined; oil modifies it). WRONG: "the high-pressure hydraulic oil of the filter" (inverts the relationship)
+- "low pressure hydraulic fluid level" -> "the level of the low-pressure hydraulic fluid" (the LEVEL is measured). WRONG: "the low-pressure hydraulic fluid of the tank" (drops "level" and changes the head noun)
+
+Check: every word of the original cluster must still appear in the corrected phrase, and the head noun must stay the head noun.
+
+**The verb of the sentence stays untouched.** Splitting a cluster changes ONLY the words inside the cluster phrase — the verb, the object order, and the rest of the sentence must remain identical. "Examine the high pressure hydraulic oil filter for damage" splits to "Examine the filter of the high-pressure hydraulic oil for damage" — the verb is still "Examine". Replacing "Examine" with "Interchange" while fixing a cluster is a forbidden meaning change; the only verb changes allowed in the whole task are the ones dictated by the violation itself (unapproved word -> dictionary alternative, -ing -> imperative, passive -> active, complex tense -> simple).
+
 **Rule 2.2 — hyphens:** Use a hyphen to show which words belong together in a compound modifier:
 
 - "a small-engine part" (the engine is small) vs "a small engine part" (the part is small)

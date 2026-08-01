@@ -27,4 +27,4 @@ python references/lookup.py ensure commence utilize port
 
 **GR-1/GR-4 — dangling "this":** "This is important" is a violation. "This switch is important" is correct ("this" + noun). The linter flags sentences starting with "This" + a verb.
 
-**GR-6 — Latin abbreviations:** The linter flags i.e., e.g., etc., viz. as ERRORS. Replace with "that is", "for example", "and so on".
+**GR-6 — Latin abbreviations:** The linter flags i.e., e.g., etc., viz. as ERRORS. Replace with "that is", "for example", "and so on". Match the MEANING: "e.g." -> "for example", "i.e." -> "that is", "etc." -> "and so on". Do not use "that is" for "etc." or "for example" for "i.e.".

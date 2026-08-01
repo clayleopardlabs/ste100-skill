@@ -21,32 +21,43 @@ NEVER deliver STE text without running the verification loop below. The linter i
 
 ## The Verification Protocol (MANDATORY)
 
-**Phase 1 — Write.** Draft the text. Keep sentences short, use imperative mood, one action per sentence.
+**Phase 1 — Write.** Draft the text. Keep sentences short, use imperative mood, one action per sentence. Count the words in every sentence as you write: more than 25 words is an ERROR (Rule 4.1), and procedures should stay at or below 20 words (Rule 8.7). If a sentence is over, split it now.
 
-**Phase 2 — Lint.** Run the mechanical linter on your draft:
+**Phase 2 — Lint the original, then draft.** Run the mechanical linter on the ORIGINAL text first. Its output is the authoritative violation list: every printed line is a violation you must report, with the rule number exactly as printed. Save the output: `python references/ste_check.py original.md > lint-original.txt` and echo `lint-original.txt` verbatim in your report — never reconstruct the violation list from memory. Then draft your corrected version:
 
 ```bash
-python references/ste_check.py draft.md
+python references/ste_check.py original.md
 ```
 
-It reports ERRORS (deterministic rule violations) and WARNINGs (heuristics that need judgment: -ing forms, passive voice, noun clusters, complex tenses).
+It reports ERRORS (deterministic rule violations) and WARNINGs (heuristics that need judgment: -ing forms, passive voice, noun clusters, complex tenses). Rule numbers in the output are authoritative — cite them exactly as printed (1.1/1.6, 4.1/8.7, 8.1, GR-6, 3.5, 3.2/3.4, 3.6, 2.1). Do not invent rule numbers.
 
 **Phase 3 — Fix one rule at a time.** For each ERROR, from first to last:
-1. If it is an unapproved word, run `python references/lookup.py <word>` to get the approved alternative
-2. Replace the word, then re-run the linter for that line only
-3. If a word is genuinely a technical name (Rule 1.5 categories), add it with `--allow` and re-run:
+1. If it is an unapproved word, run `python references/lookup.py <word>` to get the approved alternative. Replace the word with that alternative VERBATIM and keep the rest of the sentence unchanged — do not rewrite the sentence, do not rephrase around the word
+2. If it is a Latin abbreviation (GR-6), the linter message names the ONE matching replacement phrase ("e.g." → "for example", "i.e." → "that is", "etc." → "and so on"). Copy that exact phrase into the sentence — the named phrase is the only acceptable replacement for that abbreviation. Never substitute a different phrase (e.g. never use "for example" for "etc.")
+3. Replace the word, then re-run the linter for that line only
+4. If a word is genuinely a technical name (Rule 1.5 categories), add it with `--allow` and re-run:
    ```bash
    python references/ste_check.py --allow port,clamp draft.md
    ```
-4. For WARNINGs, read the relevant section file (see table below) and decide deliberately: fix, justify as a technical name, or rephrase
+5. For WARNINGs, read the relevant section file (see table below) and decide deliberately: fix, justify as a technical name, or rephrase
 
-**Phase 4 — Re-lint until zero.** Loop Phase 3 until the linter reports 0 errors. Then assess the WARNINGs with the section files. Do not stop at "mostly compliant".
+**Phase 4 — Re-lint until zero (bounded).** Loop Phase 3 until the linter reports 0 errors and 0 warnings. Do not stop at "mostly compliant". WATCHDOG — the loop MUST terminate: (1) never run the linter more than 6 times on your drafts; (2) before each re-lint, compare the new lint output to the previous one — if the output is IDENTICAL (same violations, same lines) to the previous run, you are stuck: STOP looping and instead FIX THE RULES, not the file — re-read the relevant section file, pick a different correction, then lint once more; (3) if you still have violations after 6 lint runs, STOP and deliver the best draft you have, clearly reporting the remaining violations and why you could not resolve them. Looping forever is never acceptable: a bounded imperfect answer beats an infinite loop.
 
 **Phase 5 — Judgment check.** The linter cannot check everything. Verify with the section files:
 - Imperative mood and one action per sentence (05)
 - Conditions before actions, warnings before steps (05, 07)
 - Terminology consistency, no dangling "this", no Latin abbreviations (09)
 - Descriptive vs. procedural voice (06)
+- GRAMMAR: read the final text aloud, one sentence at a time. Every sentence must be a complete, grammatical sentence (subject + predicate, correct word order). If a sentence reads broken or missing words ("before operate the system", "while hold the valve"), fix it — the linter cannot detect grammar.
+- ONE ACTION PER SENTENCE: scan for the conjunction "and" (also "then", "while"). If "and" joins two commands or actions ("Hold the wrench and keep the valve closed"), split into two sentences — the linter cannot detect Rule 3.7.
+- NO NONSENSE: every sentence must make sense as English. If a word replacement makes the sentence nonsensical ("keep the valve in PUT"), rewrite the sentence properly. Check the resulting text reads like a real procedure.
+- NO DUPLICATE STEPS: after rewriting, check that no action appears twice ("Remove the cover." plus "Remove the cover from the filter."). Delete duplicates.
+- STEP PRESERVATION (Rule 4.2): make a numbered list of EVERY verb occurrence in the ORIGINAL text — each imperative counts separately ("Hold the wrench with the left hand while holding the valve" contains HOLD twice = two rows). For each occurrence, mark where it appears in your corrected text. Every original occurrence must still appear — splitting and rephrasing are allowed, but NEVER drop an occurrence and NEVER invent one that was not in the original. If an occurrence is missing or new, fix the corrected text. The replacement must use the SAME VERB (or the dictionary-approved alternative of that verb) — substituting a different verb for the same action ("hold the valve" becoming "keep pressure on the valve") is a meaning change and is forbidden. COUNT the mapping: the number of corrected verb occurrences must equal the number of original verb occurrences — if your corrected text has fewer occurrences of a verb, content was dropped: restore it.
+- PER-SENTENCE CHECKLIST: for EVERY sentence in the corrected text, answer all four aloud: (1) grammatical and meaningful? (2) one action only? (3) no passive voice? (4) no dangling reference? Any "no" means fix that sentence before Phase 6.
+
+**Phase 6 — Final artifact verification (MANDATORY, never skip).** The text you publish must be exactly the text you linted. Write your FINAL corrected text to the draft file (overwriting it), run the linter one last time on that exact file. The final lint must report "0 errors, 0 warnings". WARNINGs are violations too — a result with any warning means you are NOT done: fix each warning, re-lint, and repeat until the output line reads exactly "0 errors, 0 warnings". NEVER report a linter result you did not obtain by running the command on the exact text you are about to deliver, and NEVER declare success while warnings remain. LINE COUNT GUARD: run `(Get-Content <draft>).Count` — the draft must have AT LEAST as many lines as the original file. Fewer lines means content was dropped: restore it. The draft file must contain ONLY the corrected STE text — no report text, no "examples:", no labels, no "a) b) c)" items, no commentary, no "..." placeholders. Every original line must be transformed into corrected sentences, never deleted. Your violation report must contain EVERY violation the linter printed for the original text — if you do not know why a printed line is a violation, read the section file for that rule before writing your report. Do not report violations the linter did not print.
+
+**Phase 6 evidence (MANDATORY):** a report that claims "0 errors, 0 warnings" is only trustworthy if it is tied to the exact artifact. After the final lint, run `Get-FileHash <draft-file>` (or `sha256sum`) and include the hash, AND echo the file back with `Get-Content -Raw <draft-file>`, both in your report. The delivered text must be a character-for-character copy of that echoed file. If you rewrote or rephrased anything after the final lint, the test FAILS — re-run the whole Phase 6 loop on the new text instead. Never hand-edit the linted text in your report: copy it from the file.
 
 ## Word Lookup (not dictionary reads)
 

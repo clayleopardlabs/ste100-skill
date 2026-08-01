@@ -77,7 +77,10 @@ The skill enforces a mandatory write-then-verify loop:
 1. Write the draft
 2. Run the linter: `python references/ste_check.py draft.md`
 3. Fix one rule at a time — query `python references/lookup.py <word>` for alternatives, or justify a word as a technical name with `--allow`
-4. Re-lint until 0 errors, then judge the warnings against the section files
+4. Re-lint until 0 errors AND 0 warnings, then judge the remaining rules against the section files
+5. Phase 6 guard: the exact artifact you publish must be the artifact you linted (hash + verbatim echo in the report), and it must have at least as many lines as the original — dropping content is a violation (Rule 4.2)
+
+The fix loop is bounded (watchdog): at most 6 linter runs; if two consecutive lint outputs are identical, you are stuck — change the FIX, not the file; after 6 runs, deliver the best draft with remaining violations reported. Never loop.
 
 Example — the linter catches what a reviewer misses:
 
@@ -95,7 +98,31 @@ $ python references/ste_check.py after.md --allow port
 0 errors, 0 warnings
 ```
 
-Warnings are heuristics (-ing forms, passive voice, noun clusters, complex tenses) that always need a deliberate judgment call; errors are deterministic and must all be fixed.
+Warnings are heuristics (-ing forms, passive voice, noun clusters, complex tenses) that always need a deliberate judgment call; errors are deterministic and must all be fixed. A result that reports warnings is not a pass.
+
+### How the skill was refined: the 10-paragraph test corpus
+
+The skill is verified against a graded regression corpus in [`STE100 tests/`](STE100%20tests/README.md): 10 test paragraphs with escalating violation counts — test-01 has exactly 1 violation, test-02 has 2, and so on up to test-08 which violates one of EVERY kind, then test-09 (2 violations of every kind) and test-10 (3 of every kind). Each has a rubric identifying every violation with its rule citation and required correction. A fresh subagent (cold context, Qwen3.5-9B via LM Studio) must identify and fix every violation in each paragraph; the grade is perfect only if all violations are found, all are corrected without introducing new ones, and the final text lints clean.
+
+The loop: on any non-perfect score, the skill is modified so that specific mistake cannot recur, then the same paragraph is re-tested. The 18 defects this process caught (each now prevented by the skill):
+
+| Failure observed | Prevention now in the skill |
+|---|---|
+| Agent reported a fabricated 0/0 lint for text that still had a violation | Phase 6: final artifact is linted verbatim (hash + echo evidence); never report an un-run lint |
+| Agent never counted words, missed an over-25-word sentence | Phase 1 mandates counting every sentence's words; 21-25 words is a warning that must also be fixed |
+| Agent cited invented rule numbers | Rule citations must be copied from the linter output exactly as printed |
+| "Hold the wrench with the left hand and keep the valve closed" — two actions invisible to the linter | Mechanical Rule 3.7 check: command + "and"/"then" + content word = two-action join warning |
+| Agent rewrote "holding" as a different verb | -ing fixes must use the SAME verb; lookup-verify the base verb is approved as a verb (CHECK is noun-only → EXAMINE) |
+| Agent stopped at "0 errors" with warnings remaining | Phase 6 requires the output line to read exactly "0 errors, 0 warnings" |
+| "etc." → "that is a rag" (wrong meaning) | Latin abbreviations map to exactly one replacement: e.g.→"for example", i.e.→"that is", etc.→"and so on" |
+| "hydraulic oil of the filter" — cluster split inverted the meaning | Cluster splits keep every word, keep the head noun, keep the sentence verb; only add articles/hyphens/prepositions |
+| Agent looped 55 minutes without running the linter | Watchdog: 20-minute cap, 25 tool-call cap, "STOPPED AT CAP" deliver-don't-loop |
+| Agent wrote report text into the draft and deleted sentences | Line-count guard: draft must have ≥ the original's line count, containing only corrected text |
+| "LOOSING" (uppercase -ing) bypassed the linter | -ing regex compiled case-insensitive |
+| The linter's own suggestion "and so on" was flagged ("so") | Multi-word exception for "and so on" |
+| Agent invented "Reattach" for Fix (dictionary says REPAIR) | Every replacement word must be lookup-verified — never invent words not in the dictionary |
+
+Full details, all 18 defects, and the complete protocol are in [`STE100 tests/README.md`](STE100%20tests/README.md).
 
 ### Required Reference Files
 
