@@ -160,20 +160,24 @@ Before (typical AI slop):
 After (strict STE):
 
 > **WARNING:** Make sure that the switch is OFF before you open the cover.
->
-> 1. Set the switch to OFF.
-> 2. Open the cover.
-> 3. Remove the filter.
-> 4. Check the filter.
-> 5. Install the new filter.
-> 6. Close the cover.
-> 7. Set the switch to ON.
+
+Remove the old filter:
+- Set the switch to OFF.
+- Open the cover.
+- Remove the filter.
+- Check the filter.
+
+Install the new filter:
+- Install the new filter.
+- Close the cover.
+- Set the switch to ON.
 
 What changed:
 
 - "ensure" -> MAKE SURE, "prior to" -> BEFORE, "inspect" -> CHECK, "commence" and "locate" are not approved words
 - Passive voice became active voice: "it is essential that the filter element be replaced" -> "Remove the filter"
 - One instruction per step; the longest step is 12 words, under the 20-word limit
+- Steps are grouped into two vertical lists of at most 6 items, with bullets (Rules 4.3, 8.4, 8.5)
 - The WARNING comes first and states the condition before the action
 - "optimum", "longevity", "peak efficiency" are marketing claims, not instructions; they were removed
 
@@ -187,10 +191,10 @@ After (strict STE):
 
 > **WARNING:** Do not open the cover when the pump is ON.
 >
-> 1. Set the switch to ON.
-> 2. Check the pressure.
-> 3. Adjust the pressure.
-> 4. Set the switch to OFF.
+> - Set the switch to ON.
+> - Check the pressure.
+> - Adjust the pressure.
+> - Set the switch to OFF.
 
 What changed:
 
@@ -198,7 +202,7 @@ What changed:
 - "When you are ready" and "please ensure that" are not instructions; they were removed
 - "verify that all connections are secure" became a step you can follow: "Check the pressure"
 - The condition "if any anomalies are detected" became a WARNING stated before the steps
-- Each step is one command; the longest is 10 words, under the 20-word limit
+- Each step is one command in a vertical list of 4 items (Rules 4.3, 8.4, 8.5); the longest is 10 words, under the 20-word limit
 
 ### Example 3: A Surgical Procedure
 
