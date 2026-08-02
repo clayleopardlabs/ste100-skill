@@ -1,6 +1,6 @@
 # STE100 tests
 
-Automated regression corpus for the ste100 skill, built to validate that a cold-context agent (the `omnicoder` subagent, Qwen3.5-9B-The-Defiant-Fable via LM Studio) can identify and correct STE100 violations against the skill's own rules.
+Automated regression corpus for the ste100 skill, built to validate that a cold-context agent can identify and correct STE100 violations against the skill's own rules.
 
 ## How the corpus is graded
 
