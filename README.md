@@ -1,3 +1,10 @@
+> **SUPERSEDED & ARCHIVED** (2026-08-03). Development continues in
+> [clayleopardlabs/ste100-compiler](https://github.com/clayleopardlabs/ste100-compiler),
+> which mirrors this repository's Issue 8 test corpus and rubrics and passes
+> them 10/10 under both Issue 8 and Issue 9 with a deterministic engine (no
+> model required). New work happens there; this repository is retained for
+> reference only.
+
 # ASD-STE100 Skill
 
 An AI assistant skill for rewriting plain technical text into **ASD-STE100 Simplified Technical English** - the international specification for clear, controlled-language technical documentation - and for verifying that the result actually complies with the standard.
